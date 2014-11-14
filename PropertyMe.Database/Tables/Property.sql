@@ -8,5 +8,7 @@
     [Bedroom] INT NULL, 
     [Bathroom] INT NULL, 
     [ReferenceNumber] NVARCHAR(20) NOT NULL, 
-    [Description] NVARCHAR(150) NULL
+    [Description] NVARCHAR(150) NULL, 
+    [AgentID] CHAR(36) NULL, 
+    [Location] [sys].[geography] NULL
 )
