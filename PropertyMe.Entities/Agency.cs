@@ -18,13 +18,11 @@ namespace PropertyMe.Entities
             set { _Email = value; }
         }
 
-
         public string Phone
         {
             get { return _Phone; }
             set { _Phone = value; }
         }
-
 
         public int ID
         {
@@ -56,7 +54,7 @@ namespace PropertyMe.Entities
             }
             set
             {
-                Agents = value;
+                _Agents = value;
             }
         }
         public Picture Logo
@@ -67,7 +65,7 @@ namespace PropertyMe.Entities
             }
             set
             {
-                Logo = value;
+                _Logo = value;
             }
         }
     }

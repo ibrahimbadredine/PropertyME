@@ -10,5 +10,7 @@
     [ReferenceNumber] NVARCHAR(20) NOT NULL, 
     [Description] NVARCHAR(150) NULL, 
     [AgentID] CHAR(36) NULL, 
-    [Location] [sys].[geography] NULL
+    [Location] [sys].[geography] NOT NULL, 
+    [IsSale] BIT NOT NULL, 
+    [IsRent] BIT NOT NULL
 )
