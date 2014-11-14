@@ -1,0 +1,9 @@
+F:\GIT\PropertyME\PropertyMe.Database\bin\Debug\PropertyMe.Database.dacpac
+F:\GIT\PropertyME\PropertyMe.Database\bin\Debug\PropertyMe.Database.dll
+F:\GIT\PropertyME\PropertyMe.Database\bin\Debug\PropertyMe.Database.pdb
+F:\GIT\PropertyME\PropertyMe.Database\obj\Debug\Model.xml
+F:\GIT\PropertyME\PropertyMe.Database\obj\Debug\refactor.xml
+F:\GIT\PropertyME\PropertyMe.Database\obj\Debug\postdeploy.sql
+F:\GIT\PropertyME\PropertyMe.Database\obj\Debug\predeploy.sql
+F:\GIT\PropertyME\PropertyMe.Database\obj\Debug\PropertyMe.Database.dll
+F:\GIT\PropertyME\PropertyMe.Database\obj\Debug\PropertyMe.Database.pdb

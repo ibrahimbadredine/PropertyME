@@ -1,0 +1,12 @@
+F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Service\bin\PropertyMe.Service.dll.config
+F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Service\bin\PropertyMe.Service.dll
+F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Service\bin\PropertyMe.Service.pdb
+F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Service\obj\Debug\PropertyMe.Service.csprojResolveAssemblyReference.cache
+F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Service\obj\Debug\PropertyMe.Service.dll
+F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Service\obj\Debug\PropertyMe.Service.pdb
+F:\GIT\PropertyME\PropertyMe.Service\bin\PropertyMe.Service.dll.config
+F:\GIT\PropertyME\PropertyMe.Service\bin\PropertyMe.Service.dll
+F:\GIT\PropertyME\PropertyMe.Service\bin\PropertyMe.Service.pdb
+F:\GIT\PropertyME\PropertyMe.Service\obj\Debug\PropertyMe.Service.csprojResolveAssemblyReference.cache
+F:\GIT\PropertyME\PropertyMe.Service\obj\Debug\PropertyMe.Service.dll
+F:\GIT\PropertyME\PropertyMe.Service\obj\Debug\PropertyMe.Service.pdb

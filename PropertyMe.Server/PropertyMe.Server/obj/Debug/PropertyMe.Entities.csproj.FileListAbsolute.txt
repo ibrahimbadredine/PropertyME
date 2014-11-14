@@ -1,5 +1,0 @@
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Server\bin\Debug\PropertyMe.Server.dll
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Server\bin\Debug\PropertyMe.Server.pdb
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Server\obj\Debug\PropertyMe.Entities.csprojResolveAssemblyReference.cache
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Server\obj\Debug\PropertyMe.Server.dll
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.Server\obj\Debug\PropertyMe.Server.pdb

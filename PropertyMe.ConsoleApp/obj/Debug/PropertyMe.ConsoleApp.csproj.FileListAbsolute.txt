@@ -1,0 +1,5 @@
+F:\GIT\PropertyME\PropertyMe.ConsoleApp\bin\Debug\PropertyMe.ConsoleApp.exe.config
+F:\GIT\PropertyME\PropertyMe.ConsoleApp\bin\Debug\PropertyMe.ConsoleApp.exe
+F:\GIT\PropertyME\PropertyMe.ConsoleApp\bin\Debug\PropertyMe.ConsoleApp.pdb
+F:\GIT\PropertyME\PropertyMe.ConsoleApp\obj\Debug\PropertyMe.ConsoleApp.exe
+F:\GIT\PropertyME\PropertyMe.ConsoleApp\obj\Debug\PropertyMe.ConsoleApp.pdb
