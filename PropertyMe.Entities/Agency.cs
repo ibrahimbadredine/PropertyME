@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 
+
 namespace PropertyMe.Entities
 {
-    class Agency : IEntity
+    class Agency
     {
         int _ID;
         string _Name;

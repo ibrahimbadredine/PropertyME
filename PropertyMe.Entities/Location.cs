@@ -2,7 +2,7 @@
 
 namespace PropertyMe.Entities
 {
-    public class Location : IEntity
+    public class Location
     {
         int _ID;
         string _Name;

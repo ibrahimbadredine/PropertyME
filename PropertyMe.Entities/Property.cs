@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace PropertyMe.Entities
 {
-    public class Property : IEntity
+    public class Property
     {
         int _ID;
         decimal _Price;

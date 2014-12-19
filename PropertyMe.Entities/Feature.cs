@@ -1,7 +1,7 @@
 
 namespace PropertyMe.Entities
 {
-    public class Feature : IEntity
+    public class Feature
     {
         int _ID;
         string _Description;

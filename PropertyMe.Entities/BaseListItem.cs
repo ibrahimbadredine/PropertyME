@@ -2,7 +2,7 @@
 
 namespace PropertyMe.Entities
 {
-    public class BaseListItem : IEntity
+    public class BaseListItem
     {
         int _ID;
         string _Name;

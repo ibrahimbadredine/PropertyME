@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PropertyMe.Entities
 {
-    class Favourites : IEntity
+    class Favourites
     {
         int _ID;
         User _User;
