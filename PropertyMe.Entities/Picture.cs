@@ -2,7 +2,7 @@
 
 namespace PropertyMe.Entities
 {
-    public class Picture
+    public class Picture : IEntity
     {
         int _ID;
         byte[] _Image;
