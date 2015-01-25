@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Category]
 (
-	[ID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+	[ID] INT NOT NULL PRIMARY KEY, 
     [Name] NVARCHAR(50) NOT NULL, 
-    [PictureID] CHAR(36) NULL
+    [PictureID] BIGINT NULL,
+	CONSTRAINT [FK_Category_Picture] FOREIGN KEY ([PictureID]) REFERENCES [Picture]([ID])
 )

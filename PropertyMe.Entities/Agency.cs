@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace PropertyMe.Entities
 {
-    class Agency : IEntity
+    public class Agency: IEntity
     {
         int _ID;
         string _Name;

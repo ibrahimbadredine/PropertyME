@@ -11,6 +11,27 @@ Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "PropertyMe.Model", "Propert
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.Service", "PropertyMe.Service\PropertyMe.Service.csproj", "{5BEAF583-8BB2-40E2-83D0-582E61C7B028}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PropertyMe.UI", "http://localhost:11337", "{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_11337"
+		Debug.AspNetCompiler.PhysicalPath = "PropertyMe.UI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_11337\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_11337"
+		Release.AspNetCompiler.PhysicalPath = "PropertyMe.UI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_11337\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "PropertyMe.UI\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +56,10 @@ Global
 		{5BEAF583-8BB2-40E2-83D0-582E61C7B028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BEAF583-8BB2-40E2-83D0-582E61C7B028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BEAF583-8BB2-40E2-83D0-582E61C7B028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

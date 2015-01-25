@@ -1,6 +1,0 @@
-﻿CREATE TABLE [dbo].[Location]
-(
-	[ID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [Name] NVARCHAR(50) NOT NULL, 
-    [ParentLocation] CHAR(36) NULL
-)

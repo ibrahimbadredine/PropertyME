@@ -41,11 +41,11 @@
   <ItemGroup>
     <Compile Include="Agency.cs" />
     <Compile Include="Agent.cs" />
-    <Compile Include="BaseListItem.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Favourites.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="UserBase.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

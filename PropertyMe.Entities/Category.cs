@@ -1,5 +1,3 @@
-
-
 namespace PropertyMe.Entities
 {
     public class Category : IEntity

@@ -1,49 +1,12 @@
 
-
 namespace PropertyMe.Entities
 {
-    public class Agent : IEntity
+    public class Agent : UserBase
     {
-        int _ID;
-        string _Name;
-        string _Email;
         string _Phone;
         string _Mobile;
         Picture _Photo;
 
-        public int ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                _ID = value;
-            }
-        }
-        public string Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                _Name = value;
-            }
-        }
-        public string Email
-        {
-            get
-            {
-                return _Email;
-            }
-            set
-            {
-                _Email = value;
-            }
-        }
         public string Phone
         {
             get

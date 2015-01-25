@@ -1,4 +1,3 @@
-
 namespace PropertyMe.Entities
 {
     public class Feature : IEntity
