@@ -1,0 +1,432 @@
+{
+    "id": "PropertyMe.UI",
+    "name": "PropertyMe.UI",
+    "path": "F:\\GIT\\PropertyME\\PropertyMe.UI",
+    "files": [
+        {
+            "name": "add.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "6464f13e-2708-4e4d-9406-579b84d54a01",
+            "page": true
+        },
+        {
+            "name": "blog.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "86274607-4149-4815-9e72-66937a9026e1",
+            "page": true
+        },
+        {
+            "name": "blog-post.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "7d99c350-37ae-468d-9da2-81a0623101c9",
+            "page": true
+        },
+        {
+            "name": "buttons.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "6546f7ac-4679-4524-b036-b1d93e03b2da",
+            "page": true
+        },
+        {
+            "name": "components.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "abadd075-4e41-44d2-b551-1bfaaa650db7",
+            "page": true
+        },
+        {
+            "name": "explore.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "ca2e03df-e276-42aa-af70-9b7376d0f23c",
+            "page": true
+        },
+        {
+            "name": "form.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "9ebd4bc6-1f9d-43fe-9248-120e6fa8b8f3",
+            "page": true
+        },
+        {
+            "name": "grid.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "caf20b34-3a80-4dab-bbb7-154ec3136c05",
+            "page": true
+        },
+        {
+            "name": "icons.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "9e3886bc-5b6d-4251-be1d-8475cd636ae8",
+            "page": true
+        },
+        {
+            "name": "index-agency.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "ba56c085-3747-44d0-841b-e9b2ce7dd789",
+            "page": true
+        },
+        {
+            "name": "index-map.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "62f504b7-66c0-4f5b-b579-f8f9ce445795",
+            "page": true
+        },
+        {
+            "name": "index.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "115c5c7b-cedc-43e1-b360-8757c2cdc441",
+            "page": true
+        },
+        {
+            "name": "lists.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "00460ccf-2109-4a87-9c88-9a0ff4c7a80f",
+            "page": true
+        },
+        {
+            "name": "profile.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "dfdc2b01-51c4-4035-a848-21f7f5b08446",
+            "page": true
+        },
+        {
+            "name": "signin.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "5100a13c-a2ab-42b9-a013-bb5ec72dd4cf",
+            "page": true
+        },
+        {
+            "name": "signup.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "6f9796de-dca7-4611-8ab1-e4cb5951b458",
+            "page": true
+        },
+        {
+            "name": "single.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "63244524-e8f7-4129-8d91-28a99e6f04af",
+            "page": true
+        },
+        {
+            "name": "tables.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "d7de93c9-bee2-404d-9a80-ce99e2aaee4d",
+            "page": true
+        },
+        {
+            "name": "widgets.html",
+            "type": "html",
+            "lib": false,
+            "deps": [],
+            "id": "4dd78103-d585-4c89-8140-9d9664deffcb",
+            "page": true
+        },
+        {
+            "name": "css\\app-blue.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "bbf438bd-24de-4da2-ae39-35ed56862a5f"
+        },
+        {
+            "name": "css\\app-magenta.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "81121db3-ad25-450a-83c3-c46dbbeb4e00"
+        },
+        {
+            "name": "css\\app-red.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "a54cd8d1-ace1-4e5b-9f1c-4610596b773d"
+        },
+        {
+            "name": "css\\app-yellow.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "4d17a877-d35a-4ac5-afd6-91c5453521e4"
+        },
+        {
+            "name": "css\\app.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "d0246289-a383-4632-a0da-7377b0c6a6e2"
+        },
+        {
+            "name": "css\\bootstrap.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "83257349-5d4c-4c39-99dc-a036128e5d7c"
+        },
+        {
+            "name": "css\\datepicker.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "459bf959-2ab1-49be-9abb-864631c3d1e2"
+        },
+        {
+            "name": "css\\fileinput.min.css",
+            "type": "css",
+            "lib": true,
+            "deps": [],
+            "id": "50a0cdc0-863c-41fe-bd6c-d59f39497a0a"
+        },
+        {
+            "name": "css\\font-awesome.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "a9419690-a98e-497e-9b92-650d2803c523"
+        },
+        {
+            "name": "css\\jquery-ui.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "b87959f1-5a4e-424c-9524-32f30bf08b79"
+        },
+        {
+            "name": "css\\fullscreen-slider.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "d6693507-d254-44d4-a6d9-4380c111f553"
+        },
+        {
+            "name": "css\\jquery.tagsinput.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "53920eb6-c9ec-4f27-9dc3-76b21343de6a"
+        },
+        {
+            "name": "css\\simple-line-icons.css",
+            "type": "css",
+            "lib": false,
+            "deps": [],
+            "id": "c9b9515c-b213-45e1-8063-3740925ea3e9"
+        },
+        {
+            "name": "js\\app.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "2b103341-298c-4864-9ea7-7c9a07cf72dc"
+        },
+        {
+            "name": "js\\blog.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "6d3b1a03-819e-47f7-9d4a-ff4cf55ecd53"
+        },
+        {
+            "name": "js\\bootstrap-datepicker.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "c672d87e-b506-4ae8-b961-1ebbf6b94cc3"
+        },
+        {
+            "name": "js\\bootstrap.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "115f3faa-ae8d-489c-b9da-56e869ab02bf"
+        },
+        {
+            "name": "js\\calendar.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "b03e9e86-a024-4f75-a4fc-4887a5b0fa95"
+        },
+        {
+            "name": "js\\clndr.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "42b193e6-f987-4266-bc1c-66004064496d"
+        },
+        {
+            "name": "js\\fileinput.min.js",
+            "type": "js",
+            "lib": true,
+            "deps": [],
+            "id": "ae04479f-374e-4be6-9e0d-ef77b6520dad"
+        },
+        {
+            "name": "js\\home.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "79f85a9a-73e7-492a-85b7-a2132404a4ab"
+        },
+        {
+            "name": "js\\infobox.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "718320d5-0ee1-4094-8636-d39a45701549"
+        },
+        {
+            "name": "js\\jquery-2.1.1.min.js",
+            "type": "js",
+            "lib": true,
+            "deps": [],
+            "id": "jquery"
+        },
+        {
+            "name": "js\\jquery-ui.min.js",
+            "type": "js",
+            "lib": true,
+            "deps": [],
+            "id": "5742095f-f0ea-4d74-b451-42156674868f"
+        },
+        {
+            "name": "js\\jquery.mjs.nestedSortable.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "50016fe2-dbda-4e1c-b348-1b406fd4ffca"
+        },
+        {
+            "name": "js\\jquery.placeholder.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "87899f39-17ab-4bfa-a377-5d8a7725f52d"
+        },
+        {
+            "name": "js\\jquery-ui-touch-punch.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "89a72dad-bfcb-4ee7-bd38-1e421bcba2bd"
+        },
+        {
+            "name": "js\\jquery.tagsinput.min.js",
+            "type": "js",
+            "lib": true,
+            "deps": [],
+            "id": "e97f7178-e597-4353-9949-8ecd7c671979"
+        },
+        {
+            "name": "js\\jquery.touchSwipe.min.js",
+            "type": "js",
+            "lib": true,
+            "deps": [],
+            "id": "b6a5be80-b8db-4f27-bbad-78ab4176a824"
+        },
+        {
+            "name": "js\\jquery.visible.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "6dfe5d8b-b25a-4536-8cfb-15fc0772edc6"
+        },
+        {
+            "name": "js\\json2.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "cc36ebe0-ad47-4d0d-89d1-402097c3c058"
+        },
+        {
+            "name": "js\\moment-2.5.1.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "0e074a06-5bca-44ba-a5df-48055045c94d"
+        },
+        {
+            "name": "js\\signin.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "73027085-6f72-45fc-bc12-4cbe61bc86c9"
+        },
+        {
+            "name": "js\\signup.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "8a6d697f-58e6-47ae-bd8c-bad8e74c50a0"
+        },
+        {
+            "name": "js\\sortable.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "6a2f5991-4389-4a04-9122-61e595c8f766"
+        },
+        {
+            "name": "js\\table.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "032a219e-85f6-4bce-9574-096cd88fcfc8"
+        },
+        {
+            "name": "js\\tablesorter.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "69aa52ca-f795-45ec-aa20-e1f70c25df2e"
+        },
+        {
+            "name": "js\\underscore.js",
+            "type": "js",
+            "lib": false,
+            "deps": [],
+            "id": "b52e52e8-be47-4400-a35f-2b43a2bb9ccf"
+        },
+        {
+            "name": "js\\jquery.slimscroll.min.js",
+            "type": "js",
+            "lib": true,
+            "deps": [],
+            "id": "df7d6f15-438d-4c30-bf37-07a5a171d8aa"
+        }
+    ]
+}
