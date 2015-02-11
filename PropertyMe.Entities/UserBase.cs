@@ -4,10 +4,13 @@ namespace PropertyMe.Entities
     public class UserBase : IEntity
     {
         int _ID;
-        string _FirstName;
-        string _LastName;
+        string _Name;
         string _Password;
+        string _Tel;
         string _Email;
+        string _Description;
+        bool _Active;
+        Picture _Photo;
 
         public int ID
         {
@@ -20,21 +23,16 @@ namespace PropertyMe.Entities
                 _ID = value;
             }
         }
-        public string FirstName
+        public string Name
         {
             get
             {
-                return _FirstName;
+                return _Name;
             }
             set
             {
-                _FirstName = value;
+                _Name = value;
             }
-        }
-        public string LastName
-        {
-            get { return _LastName; }
-            set { _LastName = value; }
         }
         public string Password
         {
@@ -47,6 +45,11 @@ namespace PropertyMe.Entities
                 _Password = value;
             }
         }
+        public string Tel
+        {
+            get { return _Tel; }
+            set { _Tel = value; }
+        }
         public string Email
         {
             get
@@ -56,6 +59,27 @@ namespace PropertyMe.Entities
             set
             {
                 _Email = value;
+            }
+        }
+        public string Description
+        {
+            get { return _Description; }
+            set { _Description = value; }
+        }
+        public bool Active
+        {
+            get { return _Active; }
+            set { _Active = value; }
+        }
+        public Picture Photo
+        {
+            get
+            {
+                return _Photo;
+            }
+            set
+            {
+                _Photo = value;
             }
         }
     }

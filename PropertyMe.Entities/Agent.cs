@@ -3,42 +3,13 @@ namespace PropertyMe.Entities
 {
     public class Agent : UserBase
     {
-        string _Phone;
-        string _Mobile;
-        Picture _Photo;
+        private Agency _agency;
 
-        public string Phone
+        public Agency propAgency
         {
-            get
-            {
-                return _Phone;
-            }
-            set
-            {
-                _Phone = value;
-            }
+            get { return _agency; }
+            set { _agency = value; }
         }
-        public string Mobile
-        {
-            get
-            {
-                return _Mobile;
-            }
-            set
-            {
-                _Mobile = value;
-            }
-        }
-        public Picture Photo
-        {
-            get
-            {
-                return _Photo;
-            }
-            set
-            {
-                _Photo = value;
-            }
-        }
+
     }
 }
