@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.Entities", "Prop
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "PropertyMe.Model", "PropertyMe.Model\PropertyMe.Model.modelproj", "{A24AD70D-5C83-43B6-9397-45A6E5B44B48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.Service", "PropertyMe.Service\PropertyMe.Service.csproj", "{5BEAF583-8BB2-40E2-83D0-582E61C7B028}"
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PropertyMe.UI", "http://localhost:11337", "{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
@@ -32,6 +30,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PropertyMe.UI", "http://loc
 		SlnRelativePath = "PropertyMe.UI\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.EF", "PropertyMe.EF\PropertyMe.EF.csproj", "{30C72202-B431-4C9D-9863-480F1F423772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.Services", "PropertyMe.Services\PropertyMe.Services.csproj", "{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,7 +42,6 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{585D7667-2019-43BB-99DA-357F19ECA635}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Release|Any CPU.Build.0 = Release|Any CPU
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Release|Any CPU.Deploy.0 = Release|Any CPU
@@ -52,14 +53,18 @@ Global
 		{A24AD70D-5C83-43B6-9397-45A6E5B44B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A24AD70D-5C83-43B6-9397-45A6E5B44B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A24AD70D-5C83-43B6-9397-45A6E5B44B48}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5BEAF583-8BB2-40E2-83D0-582E61C7B028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5BEAF583-8BB2-40E2-83D0-582E61C7B028}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5BEAF583-8BB2-40E2-83D0-582E61C7B028}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5BEAF583-8BB2-40E2-83D0-582E61C7B028}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{30C72202-B431-4C9D-9863-480F1F423772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C72202-B431-4C9D-9863-480F1F423772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C72202-B431-4C9D-9863-480F1F423772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C72202-B431-4C9D-9863-480F1F423772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
