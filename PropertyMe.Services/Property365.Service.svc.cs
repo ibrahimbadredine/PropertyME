@@ -15,5 +15,9 @@ namespace PropertyMe.Services
         {
             return "testing service";
         }
+        public bool AddProperty(EF.Property property)
+        {
+            return new PropertyMe.EF.DataManager().AddProperty(property);
+        }
     }
 }

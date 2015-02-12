@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PropertyMe.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -18,6 +19,10 @@ namespace PropertyMe.Services
             UriTemplate = "GetTest/")]
         string GetTest();
 
-
+        [WebInvoke(Method = "PUT",
+       RequestFormat = WebMessageFormat.Json,
+       ResponseFormat = WebMessageFormat.Json,
+       UriTemplate = "AddProperty/{id}")]
+        bool AddProperty(Property newProperty);
     }
 }
