@@ -14,15 +14,24 @@ namespace PropertyMe.Services
     public interface IProperty365Service
     {
         [OperationContract]
-        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "GetTest/")]
-        string GetTest();
+        [WebInvoke(Method = "GET",
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetPropertyList/")]
+        List<Property> GetPropertyList();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetProperty/{id}")]
+        List<Property> GetProperty();
 
         [WebInvoke(Method = "PUT",
-       RequestFormat = WebMessageFormat.Json,
-       ResponseFormat = WebMessageFormat.Json,
-       UriTemplate = "AddProperty/{id}")]
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "AddProperty/")]
         bool AddProperty(Property newProperty);
+
     }
 }

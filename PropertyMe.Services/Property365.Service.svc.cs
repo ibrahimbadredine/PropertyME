@@ -11,13 +11,19 @@ namespace PropertyMe.Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select Property365.svc or Property365.svc.cs at the Solution Explorer and start debugging.
     public class Property365Service : IProperty365Service
     {
-        public string GetTest()
+        public List<EF.Property> GetPropertyList()
         {
-            return "testing service";
+            return new PropertyMe.EF.DataManager().GetPropertyList();
         }
+
         public bool AddProperty(EF.Property property)
         {
             return new PropertyMe.EF.DataManager().AddProperty(property);
+        }
+
+        public EF.Property GetProperty(long ID)
+        {
+            return new PropertyMe.EF.DataManager().GetProperty(ID);
         }
     }
 }

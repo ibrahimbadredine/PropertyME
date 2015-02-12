@@ -23,5 +23,33 @@ namespace PropertyMe.EF
                 return false;
             }
         }
+        public List<Property> GetPropertyList()
+        {
+            try
+            {
+                using (Property365Entities ctx = new Property365Entities())
+                {
+                    return ctx.Properties.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public Property GetProperty(long propertyID)
+        {
+            try
+            {
+                using (Property365Entities ctx = new Property365Entities())
+                {
+                    return ctx.Properties.FirstOrDefault(p => p.ID == propertyID);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
