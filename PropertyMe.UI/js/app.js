@@ -1,6 +1,40 @@
 (function($) {
     "use strict";
 
+    // Declare app level module which depends on filters, and services
+    angular.module('ngproperty', ['ngproperty.filters', 'ngproperty.services', 'ngproperty.directives', 'ngproperty.controllers']).
+        config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.when('/add', { templateUrl: '../add.html', controller: 'addPropertyCtrl' });
+            //$routeProvider.when('/user-list', { templateUrl: 'partials/user-list.html', controller: 'UserListCtrl' });
+            //$routeProvider.when('/user-detail/:id', { templateUrl: 'partials/user-detail.html', controller: 'UserDetailCtrl' });
+            //$routeProvider.when('/user-creation', { templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl' });
+            $routeProvider.otherwise({ redirectTo: '../index-agency.html' });
+        }]);
+
+    // Declare app level module which depends on filters, and services
+    angular.module('ngagency', ['ngResource', 'ngagency.controllers', 'ngagency.services']);
+    angular.module('ngagency').config(function ($stateProvider, $httpProvider) {
+        $stateProvider.state('agents', {
+            url: '/agents',
+            templateUrl: '../index-agency.html',
+            controller: 'AgentsCtrl'
+        }).state('viewMovie', {
+            url: '/movies/:id/view',
+            templateUrl: 'partials/movie-view.html',
+            controller: 'MovieViewController'
+        }).state('newMovie', {
+            url: '/movies/new',
+            templateUrl: 'partials/movie-add.html',
+            controller: 'MovieCreateController'
+        }).state('editMovie', {
+            url: '/movies/:id/edit',
+            templateUrl: 'partials/movie-edit.html',
+            controller: 'MovieEditController'
+        });
+    }).run(function ($state) {
+        $state.go('movies');
+    });
+
     // Custom options for map
     var options = {
             zoom : 14,

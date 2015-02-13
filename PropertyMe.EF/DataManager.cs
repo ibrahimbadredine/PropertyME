@@ -8,48 +8,44 @@ namespace PropertyMe.EF
 {
     public class DataManager
     {
-        public bool AddProperty(Property property)
+        public bool PropertyAdd(Property property)
         {
-            try
+            using (Property365Entities ctx = new Property365Entities())
             {
-                using (Property365Entities ctx = new Property365Entities())
-                {
-                    ctx.Properties.Add(property);
-                }
-                return true;
+                ctx.Properties.Add(property);
             }
-            catch (Exception ex)
+            return true;
+        }
+        public List<Property> PropertyList()
+        {
+            using (Property365Entities ctx = new Property365Entities())
             {
-                return false;
+                return ctx.Properties.ToList();
             }
         }
-        public List<Property> GetPropertyList()
+        public Property PropertyGet(long propertyID)
         {
-            try
+            using (Property365Entities ctx = new Property365Entities())
             {
-                using (Property365Entities ctx = new Property365Entities())
-                {
-                    return ctx.Properties.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                return null;
+                return ctx.Properties.FirstOrDefault(p => p.ID == propertyID);
             }
         }
-        public Property GetProperty(long propertyID)
+
+        public List<Agent> AgentList()
         {
-            try
+            using (Property365Entities ctx = new Property365Entities())
             {
-                using (Property365Entities ctx = new Property365Entities())
-                {
-                    return ctx.Properties.FirstOrDefault(p => p.ID == propertyID);
-                }
+                return ctx.Agents.ToList();
             }
-            catch (Exception ex)
+        }
+
+        public bool AgentAdd(Agent agent)
+        {
+            using (Property365Entities ctx = new Property365Entities())
             {
-                return null;
+                ctx.Agents.Add(agent);
             }
+            return true;
         }
     }
 }

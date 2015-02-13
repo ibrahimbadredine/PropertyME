@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Property]
 (
-	[ID] BIGINT NOT NULL PRIMARY KEY, 
+	[ID] BIGINT NOT NULL PRIMARY KEY,
+	[Title] NVARCHAR(30) NOT NULL,
     [Price] DECIMAL(18, 2) NOT NULL, 
     [CategoryID] INT NOT NULL, 
     [Area] INT NOT NULL, 

@@ -25,7 +25,7 @@ namespace PropertyMe.Services
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
         UriTemplate = "GetProperty/{id}")]
-        List<Property> GetProperty();
+        Property GetProperty(string ID);
 
         [WebInvoke(Method = "PUT",
         RequestFormat = WebMessageFormat.Json,
@@ -33,5 +33,18 @@ namespace PropertyMe.Services
         UriTemplate = "AddProperty/")]
         bool AddProperty(Property newProperty);
 
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "GetAgentList/")]
+        List<Agent> GetAgentList();
+
+        [WebInvoke(Method = "PUT",
+       RequestFormat = WebMessageFormat.Json,
+       ResponseFormat = WebMessageFormat.Json,
+       UriTemplate = "AddAgent/")]
+        bool AddAgent(Agent newAgent);
     }
 }

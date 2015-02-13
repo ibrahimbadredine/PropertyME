@@ -13,17 +13,28 @@ namespace PropertyMe.Services
     {
         public List<EF.Property> GetPropertyList()
         {
-            return new PropertyMe.EF.DataManager().GetPropertyList();
+            return new PropertyMe.EF.DataManager().PropertyList();
         }
 
         public bool AddProperty(EF.Property property)
         {
-            return new PropertyMe.EF.DataManager().AddProperty(property);
+            return new PropertyMe.EF.DataManager().PropertyAdd(property);
         }
 
-        public EF.Property GetProperty(long ID)
+        public EF.Property GetProperty(string ID)
         {
-            return new PropertyMe.EF.DataManager().GetProperty(ID);
+            return new PropertyMe.EF.DataManager().PropertyGet(long.Parse(ID));
+        }
+
+
+        public List<EF.Agent> GetAgentList()
+        {
+            return new PropertyMe.EF.DataManager().AgentList();
+        }
+
+        public bool AddAgent(EF.Agent newAgent)
+        {
+            return new PropertyMe.EF.DataManager().AgentAdd(newAgent);
         }
     }
 }
