@@ -13,38 +13,58 @@ namespace PropertyMe.Services
     [ServiceContract]
     public interface IProperty365Service
     {
-        [OperationContract]
-        [WebInvoke(Method = "GET",
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "GetPropertyList/")]
-        List<Property> GetPropertyList();
+        //[OperationContract]
+        //[WebInvoke(Method = "GET",
+        //RequestFormat = WebMessageFormat.Json,
+        //ResponseFormat = WebMessageFormat.Json,
+        //UriTemplate = "GetPropertyList/")]
+        //List<Property> GetPropertyList();
+
+        //[OperationContract]
+        //[WebInvoke(Method = "GET",
+        //RequestFormat = WebMessageFormat.Json,
+        //ResponseFormat = WebMessageFormat.Json,
+        //UriTemplate = "GetProperty/{id}")]
+        //Property GetProperty(string ID);
+
+        //[WebInvoke(Method = "PUT",
+        //RequestFormat = WebMessageFormat.Json,
+        //ResponseFormat = WebMessageFormat.Json,
+        //UriTemplate = "AddProperty/")]
+        //bool AddProperty(Property newProperty);
+
 
         [OperationContract]
         [WebInvoke(Method = "GET",
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "GetProperty/{id}")]
-        Property GetProperty(string ID);
-
-        [WebInvoke(Method = "PUT",
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "AddProperty/")]
-        bool AddProperty(Property newProperty);
-
-
-        [OperationContract]
-        [WebInvoke(Method = "GET",
-        RequestFormat = WebMessageFormat.Json,
-        ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "GetAgentList/")]
+        UriTemplate = "/GetAgentList")]
         List<Agent> GetAgentList();
 
-        [WebInvoke(Method = "PUT",
+        [WebInvoke(Method = "POST",
        RequestFormat = WebMessageFormat.Json,
        ResponseFormat = WebMessageFormat.Json,
-       UriTemplate = "AddAgent/")]
+       UriTemplate = "/AddAgent")]
         bool AddAgent(Agent newAgent);
+
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "/GetAgent/{agentId}")]
+        Agent GetAgent(string agentID);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "/UpdateAgent")]
+        bool UpdateAgent(Agent contact);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "/DeleteAgent/{agentId}")]
+        bool DeleteAgent(string agentID);
     }
 }

@@ -19,6 +19,6 @@ namespace PropertyMe.EF
         public long PictureID { get; set; }
     
         public virtual Picture Picture { get; set; }
-        public virtual Property Property { get; set; }
+        public virtual MyProperty Property { get; set; }
     }
 }

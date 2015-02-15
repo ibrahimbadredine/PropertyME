@@ -1,72 +1,113 @@
-(function($) {
-    "use strict";
+angular.module('prop365App', ['ngResource', 'prop365App.services', 'prop365App.controllers']);
+//angular.module('prop365App').config(function ($stateProvider, $httpProvider) {
+//    $stateProvider.state('agents', {
+//        url: '/agents',
+//        templateUrl: '../index-agency.html',
+//        controller: 'agentController'
+//        //}).state('viewMovie', {
+//        //    url: '/movies/:id/view',
+//        //    templateUrl: 'partials/movie-view.html',
+//        //    controller: 'MovieViewController'
+//        //}).state('newMovie', {
+//        //    url: '/movies/new',
+//        //    templateUrl: 'partials/movie-add.html',
+//        //    controller: 'MovieCreateController'
+//        //}).state('editMovie', {
+//        //    url: '/movies/:id/edit',
+//        //    templateUrl: 'partials/movie-edit.html',
+//        //    controller: 'MovieEditController'
+//    });
+//    //}).run(function ($state) {
+//    //    $state.go('movies');
+//});
 
-    // Declare app level module which depends on filters, and services
-    angular.module('ngproperty', ['ngproperty.filters', 'ngproperty.services', 'ngproperty.directives', 'ngproperty.controllers']).
-        config(['$routeProvider', function ($routeProvider) {
-            $routeProvider.when('/add', { templateUrl: '../add.html', controller: 'addPropertyCtrl' });
-            //$routeProvider.when('/user-list', { templateUrl: 'partials/user-list.html', controller: 'UserListCtrl' });
-            //$routeProvider.when('/user-detail/:id', { templateUrl: 'partials/user-detail.html', controller: 'UserDetailCtrl' });
-            //$routeProvider.when('/user-creation', { templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl' });
-            $routeProvider.otherwise({ redirectTo: '../index-agency.html' });
-        }]);
-
-    // Declare app level module which depends on filters, and services
-    angular.module('ngagency', ['ngResource', 'ngagency.controllers', 'ngagency.services']);
-    angular.module('ngagency').config(function ($stateProvider, $httpProvider) {
-        $stateProvider.state('agents', {
-            url: '/agents',
-            templateUrl: '../index-agency.html',
-            controller: 'AgentsCtrl'
-        }).state('viewMovie', {
-            url: '/movies/:id/view',
-            templateUrl: 'partials/movie-view.html',
-            controller: 'MovieViewController'
-        }).state('newMovie', {
-            url: '/movies/new',
-            templateUrl: 'partials/movie-add.html',
-            controller: 'MovieCreateController'
-        }).state('editMovie', {
-            url: '/movies/:id/edit',
-            templateUrl: 'partials/movie-edit.html',
-            controller: 'MovieEditController'
-        });
-    }).run(function ($state) {
-        $state.go('movies');
+angular.module('prop365App.services', []).factory('agentFactory', function ($resource) {
+    return $resource('http://localhost:7673/Property365.Service.svc/:id', {}, {
+        query: { method: 'GET', params: {}, isArray: false}
     });
+});
+
+angular.module('prop365App.controllers', []).controller('agentController', function ($scope, agentFactory) {
+    $scope.templateList = [{ id: 1, name: 'Admin' }, { id: 2, name: 'Agency' }, { id: 3, name: 'Agent' }, { id: 4, name: 'User' }]
+    $scope.template = {};
+    $scope.setValue = function (list) {
+        $scope.user.mplate.template_id = list.id;
+        $scope.template.template_name = list.name;
+    }
+
+    $scope.agents = agentFactory.query();
+
+    //$scope.deleteMovie = function (agent) {
+    //    if (popupService.showPopup('Really delete this?')) {
+    //        agent.$delete(function () {
+    //            $window.location.href = '';
+    //        });
+    //    }
+    //}
+
+    //}).controller('MovieViewController',function($scope,$stateParams,Movie){
+    //$scope.agent = agentFactory.get({ id: agent.id });
+
+    //}).controller('MovieCreateController',function($scope,$state,$stateParams,Movie){
+
+    $scope.agent = new agentFactory();
+
+    $scope.addAgent = function () {
+        $scope.agent.$save(function () {
+            //$state.go('movies');
+        });
+    }
+
+    //}).controller('MovieEditController',function($scope,$state,$stateParams,Movie){
+
+    //$scope.updateAgent = function () {
+    //    $scope.agent.$update(function () {
+    //        //$state.go('movies');
+    //    });
+    //};
+
+    //$scope.loadAgent = function () {
+    //    //$scope.agent = agentFactory.get({ id: $stateParams.id });
+    //};
+
+    //$scope.loadAgent();
+});
+
+(function ($) {
+    "use strict";
 
     // Custom options for map
     var options = {
-            zoom : 14,
-            mapTypeId : 'Styled',
-            disableDefaultUI: true,
-            mapTypeControlOptions : {
-                mapTypeIds : [ 'Styled' ]
-            }
-        };
+        zoom: 14,
+        mapTypeId: 'Styled',
+        disableDefaultUI: true,
+        mapTypeControlOptions: {
+            mapTypeIds: ['Styled']
+        }
+    };
     var styles = [{
-        stylers : [ {
-            hue : "#cccccc"
+        stylers: [{
+            hue: "#cccccc"
         }, {
-            saturation : -100
+            saturation: -100
         }]
     }, {
-        featureType : "road",
-        elementType : "geometry",
-        stylers : [ {
-            lightness : 100
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [{
+            lightness: 100
         }, {
-            visibility : "simplified"
+            visibility: "simplified"
         }]
     }, {
-        featureType : "road",
-        elementType : "labels",
-        stylers : [ {
-            visibility : "on"
+        featureType: "road",
+        elementType: "labels",
+        stylers: [{
+            visibility: "on"
         }]
     }, {
         featureType: "poi",
-        stylers: [ {
+        stylers: [{
             visibility: "off"
         }]
     }];
@@ -76,145 +117,145 @@
 
     // json for properties markers on map
     var props = [{
-        title : 'Modern Residence in New York',
-        image : '1-1-thmb.png',
-        type : 'For Sale',
-        price : '$1,550,000',
-        address : '39 Remsen St, Brooklyn, NY 11201, USA',
-        bedrooms : '3',
-        bathrooms : '2',
-        area : '3430 Sq Ft',
-        position : {
-            lat : 40.696047,
-            lng : -73.997159
+        title: 'Modern Residence in New York',
+        image: '1-1-thmb.png',
+        type: 'For Sale',
+        price: '$1,550,000',
+        address: '39 Remsen St, Brooklyn, NY 11201, USA',
+        bedrooms: '3',
+        bathrooms: '2',
+        area: '3430 Sq Ft',
+        position: {
+            lat: 40.696047,
+            lng: -73.997159
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'Hauntingly Beautiful Estate',
-        image : '2-1-thmb.png',
-        type : 'For Rent',
-        price : '$1,750,000',
-        address : '169 Warren St, Brooklyn, NY 11201, USA',
-        bedrooms : '2',
-        bathrooms : '2',
-        area : '4430 Sq Ft',
-        position : {
-            lat : 40.688042,
-            lng : -73.996472
+        title: 'Hauntingly Beautiful Estate',
+        image: '2-1-thmb.png',
+        type: 'For Rent',
+        price: '$1,750,000',
+        address: '169 Warren St, Brooklyn, NY 11201, USA',
+        bedrooms: '2',
+        bathrooms: '2',
+        area: '4430 Sq Ft',
+        position: {
+            lat: 40.688042,
+            lng: -73.996472
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'Sophisticated Residence',
-        image : '3-1-thmb.png',
-        type : 'For Sale',
-        price : '$1,340,000',
-        address : '38-62 Water St, Brooklyn, NY 11201, USA',
-        bedrooms : '2',
-        bathrooms : '3',
-        area : '2640 Sq Ft',
-        position : {
-            lat : 40.702620,
-            lng : -73.989682
+        title: 'Sophisticated Residence',
+        image: '3-1-thmb.png',
+        type: 'For Sale',
+        price: '$1,340,000',
+        address: '38-62 Water St, Brooklyn, NY 11201, USA',
+        bedrooms: '2',
+        bathrooms: '3',
+        area: '2640 Sq Ft',
+        position: {
+            lat: 40.702620,
+            lng: -73.989682
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'House With a Lovely Glass-Roofed Pergola',
-        image : '4-1-thmb.png',
-        type : 'For Sale',
-        price : '$1,930,000',
-        address : 'Wunsch Bldg, Brooklyn, NY 11201, USA',
-        bedrooms : '3',
-        bathrooms : '2',
-        area : '2800 Sq Ft',
-        position : {
-            lat : 40.694355,
-            lng : -73.985229
+        title: 'House With a Lovely Glass-Roofed Pergola',
+        image: '4-1-thmb.png',
+        type: 'For Sale',
+        price: '$1,930,000',
+        address: 'Wunsch Bldg, Brooklyn, NY 11201, USA',
+        bedrooms: '3',
+        bathrooms: '2',
+        area: '2800 Sq Ft',
+        position: {
+            lat: 40.694355,
+            lng: -73.985229
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'Luxury Mansion',
-        image : '5-1-thmb.png',
-        type : 'For Rent',
-        price : '$2,350,000',
-        address : '95 Butler St, Brooklyn, NY 11231, USA',
-        bedrooms : '2',
-        bathrooms : '2',
-        area : '2750 Sq Ft',
-        position : {
-            lat : 40.686838,
-            lng : -73.990078
+        title: 'Luxury Mansion',
+        image: '5-1-thmb.png',
+        type: 'For Rent',
+        price: '$2,350,000',
+        address: '95 Butler St, Brooklyn, NY 11231, USA',
+        bedrooms: '2',
+        bathrooms: '2',
+        area: '2750 Sq Ft',
+        position: {
+            lat: 40.686838,
+            lng: -73.990078
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'Modern Residence in New York',
-        image : '1-1-thmb.png',
-        type : 'For Sale',
-        price : '$1,550,000',
-        address : '39 Remsen St, Brooklyn, NY 11201, USA',
-        bedrooms : '3',
-        bathrooms : '2',
-        area : '3430 Sq Ft',
-        position : {
-            lat : 40.703686,
-            lng : -73.982910
+        title: 'Modern Residence in New York',
+        image: '1-1-thmb.png',
+        type: 'For Sale',
+        price: '$1,550,000',
+        address: '39 Remsen St, Brooklyn, NY 11201, USA',
+        bedrooms: '3',
+        bathrooms: '2',
+        area: '3430 Sq Ft',
+        position: {
+            lat: 40.703686,
+            lng: -73.982910
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'Hauntingly Beautiful Estate',
-        image : '2-1-thmb.png',
-        type : 'For Rent',
-        price : '$1,750,000',
-        address : '169 Warren St, Brooklyn, NY 11201, USA',
-        bedrooms : '2',
-        bathrooms : '2',
-        area : '4430 Sq Ft',
-        position : {
-            lat : 40.702189,
-            lng : -73.995098
+        title: 'Hauntingly Beautiful Estate',
+        image: '2-1-thmb.png',
+        type: 'For Rent',
+        price: '$1,750,000',
+        address: '169 Warren St, Brooklyn, NY 11201, USA',
+        bedrooms: '2',
+        bathrooms: '2',
+        area: '4430 Sq Ft',
+        position: {
+            lat: 40.702189,
+            lng: -73.995098
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'Sophisticated Residence',
-        image : '3-1-thmb.png',
-        type : 'For Sale',
-        price : '$1,340,000',
-        address : '38-62 Water St, Brooklyn, NY 11201, USA',
-        bedrooms : '2',
-        bathrooms : '3',
-        area : '2640 Sq Ft',
-        position : {
-            lat : 40.687417,
-            lng : -73.982653
+        title: 'Sophisticated Residence',
+        image: '3-1-thmb.png',
+        type: 'For Sale',
+        price: '$1,340,000',
+        address: '38-62 Water St, Brooklyn, NY 11201, USA',
+        bedrooms: '2',
+        bathrooms: '3',
+        area: '2640 Sq Ft',
+        position: {
+            lat: 40.687417,
+            lng: -73.982653
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'House With a Lovely Glass-Roofed Pergola',
-        image : '4-1-thmb.png',
-        type : 'For Sale',
-        price : '$1,930,000',
-        address : 'Wunsch Bldg, Brooklyn, NY 11201, USA',
-        bedrooms : '3',
-        bathrooms : '2',
-        area : '2800 Sq Ft',
-        position : {
-            lat : 40.694120,
-            lng : -73.974413
+        title: 'House With a Lovely Glass-Roofed Pergola',
+        image: '4-1-thmb.png',
+        type: 'For Sale',
+        price: '$1,930,000',
+        address: 'Wunsch Bldg, Brooklyn, NY 11201, USA',
+        bedrooms: '3',
+        bathrooms: '2',
+        area: '2800 Sq Ft',
+        position: {
+            lat: 40.694120,
+            lng: -73.974413
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }, {
-        title : 'Luxury Mansion',
-        image : '5-1-thmb.png',
-        type : 'For Rent',
-        price : '$2,350,000',
-        address : '95 Butler St, Brooklyn, NY 11231, USA',
-        bedrooms : '2',
-        bathrooms : '2',
-        area : '2750 Sq Ft',
-        position : {
-            lat : 40.682665,
-            lng : -74.000934
+        title: 'Luxury Mansion',
+        image: '5-1-thmb.png',
+        type: 'For Rent',
+        price: '$2,350,000',
+        address: '95 Butler St, Brooklyn, NY 11231, USA',
+        bedrooms: '2',
+        bathrooms: '2',
+        area: '2750 Sq Ft',
+        position: {
+            lat: 40.682665,
+            lng: -74.000934
         },
-        markerIcon : "marker-green.png"
+        markerIcon: "marker-green.png"
     }];
 
     // custom infowindow object
@@ -237,13 +278,13 @@
     });
 
     // function that adds the markers on map
-    var addMarkers = function(props, map) {
-        $.each(props, function(i,prop) {
-            var latlng = new google.maps.LatLng(prop.position.lat,prop.position.lng);
+    var addMarkers = function (props, map) {
+        $.each(props, function (i, prop) {
+            var latlng = new google.maps.LatLng(prop.position.lat, prop.position.lng);
             var marker = new google.maps.Marker({
                 position: latlng,
                 map: map,
-                icon: new google.maps.MarkerImage( 
+                icon: new google.maps.MarkerImage(
                     'images/' + prop.markerIcon,
                     null,
                     null,
@@ -284,15 +325,15 @@
                                     '</div>' +
                                  '</div>';
 
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
                     infobox.setContent(infoboxContent);
                     infobox.open(map, marker);
                 }
             })(marker, i));
 
-            $(document).on('click', '.closeInfo', function() {
-                infobox.open(null,null);
+            $(document).on('click', '.closeInfo', function () {
+                infobox.open(null, null);
             });
 
             markers.push(marker);
@@ -307,7 +348,7 @@
     var isDevice = true;
 
     // calculations for elements that changes size on window resize
-    var windowResizeHandler = function() {
+    var windowResizeHandler = function () {
         windowHeight = window.innerHeight;
         windowWidth = $(window).width();
         contentHeight = windowHeight - $('#header').height();
@@ -318,7 +359,7 @@
         $('#wrapper').height(contentHeight);
         $('#mapView').height(contentHeight);
         $('#content').height(contentHeight);
-        setTimeout(function() {
+        setTimeout(function () {
             $('.commentsFormWrapper').width(contentWidth);
         }, 300);
 
@@ -327,24 +368,24 @@
         }
 
         // Add custom scrollbar for left side navigation
-        if(windowWidth > 767) {
+        if (windowWidth > 767) {
             $('.bigNav').slimScroll({
-                height : contentHeight - $('.leftUserWraper').height()
+                height: contentHeight - $('.leftUserWraper').height()
             });
         } else {
             $('.bigNav').slimScroll({
-                height : contentHeight
+                height: contentHeight
             });
         }
-        if($('.bigNav').parent('.slimScrollDiv').size() > 0) {
+        if ($('.bigNav').parent('.slimScrollDiv').size() > 0) {
             $('.bigNav').parent().replaceWith($('.bigNav'));
-            if(windowWidth > 767) {
+            if (windowWidth > 767) {
                 $('.bigNav').slimScroll({
-                    height : contentHeight - $('.leftUserWraper').height()
+                    height: contentHeight - $('.leftUserWraper').height()
                 });
             } else {
                 $('.bigNav').slimScroll({
-                    height : contentHeight
+                    height: contentHeight
                 });
             }
         }
@@ -352,51 +393,51 @@
         // reposition of prices and area reange sliders tooltip
         var priceSliderRangeLeft = parseInt($('.priceSlider .ui-slider-range').css('left'));
         var priceSliderRangeWidth = $('.priceSlider .ui-slider-range').width();
-        var priceSliderLeft = priceSliderRangeLeft + ( priceSliderRangeWidth / 2 ) - ( $('.priceSlider .sliderTooltip').width() / 2 );
+        var priceSliderLeft = priceSliderRangeLeft + (priceSliderRangeWidth / 2) - ($('.priceSlider .sliderTooltip').width() / 2);
         $('.priceSlider .sliderTooltip').css('left', priceSliderLeft);
 
         var areaSliderRangeLeft = parseInt($('.areaSlider .ui-slider-range').css('left'));
         var areaSliderRangeWidth = $('.areaSlider .ui-slider-range').width();
-        var areaSliderLeft = areaSliderRangeLeft + ( areaSliderRangeWidth / 2 ) - ( $('.areaSlider .sliderTooltip').width() / 2 );
+        var areaSliderLeft = areaSliderRangeLeft + (areaSliderRangeWidth / 2) - ($('.areaSlider .sliderTooltip').width() / 2);
         $('.areaSlider .sliderTooltip').css('left', areaSliderLeft);
     }
 
-    var repositionTooltip = function( e, ui ){
+    var repositionTooltip = function (e, ui) {
         var div = $(ui.handle).data("bs.tooltip").$tip[0];
-        var pos = $.extend({}, $(ui.handle).offset(), { 
-                        width: $(ui.handle).get(0).offsetWidth,
-                        height: $(ui.handle).get(0).offsetHeight
-                    });
+        var pos = $.extend({}, $(ui.handle).offset(), {
+            width: $(ui.handle).get(0).offsetWidth,
+            height: $(ui.handle).get(0).offsetHeight
+        });
         var actualWidth = div.offsetWidth;
 
-        var tp = {left: pos.left + pos.width / 2 - actualWidth / 2}
+        var tp = { left: pos.left + pos.width / 2 - actualWidth / 2 }
         $(div).offset(tp);
 
-        $(div).find(".tooltip-inner").text( ui.value );
+        $(div).find(".tooltip-inner").text(ui.value);
     }
 
     windowResizeHandler();
-    $(window).resize(function() {
+    $(window).resize(function () {
         windowResizeHandler();
     });
 
-    setTimeout(function() {
+    setTimeout(function () {
         $('body').removeClass('notransition');
 
         map = new google.maps.Map(document.getElementById('mapView'), options);
         var styledMapType = new google.maps.StyledMapType(styles, {
-            name : 'Styled'
+            name: 'Styled'
         });
 
         map.mapTypes.set('Styled', styledMapType);
-        map.setCenter(new google.maps.LatLng(40.6984237,-73.9890044));
+        map.setCenter(new google.maps.LatLng(40.6984237, -73.9890044));
         map.setZoom(14);
 
         if ($('#address').length > 0) {
             newMarker = new google.maps.Marker({
-                position: new google.maps.LatLng(40.6984237,-73.9890044),
+                position: new google.maps.LatLng(40.6984237, -73.9890044),
                 map: map,
-                icon: new google.maps.MarkerImage( 
+                icon: new google.maps.MarkerImage(
                     'images/marker-new.png',
                     null,
                     null,
@@ -408,7 +449,7 @@
                 animation: google.maps.Animation.DROP,
             });
 
-            google.maps.event.addListener(newMarker, "mouseup", function(event) {
+            google.maps.event.addListener(newMarker, "mouseup", function (event) {
                 var latitude = this.position.lat();
                 var longitude = this.position.lng();
                 $('#latitude').text(this.position.lat());
@@ -419,41 +460,41 @@
         addMarkers(props, map);
     }, 300);
 
-    if(!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)) {
+    if (!(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)) {
         $('body').addClass('no-touch');
         isDevice = false;
     }
 
     // Header search icon transition
-    $('.search input').focus(function() {
+    $('.search input').focus(function () {
         $('.searchIcon').addClass('active');
     });
-    $('.search input').blur(function() {
+    $('.search input').blur(function () {
         $('.searchIcon').removeClass('active');
     });
 
     // Notifications list items pulsate animation
     $('.notifyList a').hover(
-        function() {
+        function () {
             $(this).children('.pulse').addClass('pulsate');
         },
-        function() {
+        function () {
             $(this).children('.pulse').removeClass('pulsate');
         }
     );
 
     // Exapnd left side navigation
     var navExpanded = false;
-    $('.navHandler, .closeLeftSide').click(function() {
-        if(!navExpanded) {
+    $('.navHandler, .closeLeftSide').click(function () {
+        if (!navExpanded) {
             $('.logo').addClass('expanded');
             $('#leftSide').addClass('expanded');
-            if(windowWidth < 768) {
+            if (windowWidth < 768) {
                 $('.closeLeftSide').show();
             }
             $('.hasSub').addClass('hasSubActive');
             $('.leftNav').addClass('bigNav');
-            if(windowWidth > 767) {
+            if (windowWidth > 767) {
                 $('.full').addClass('m-full');
             }
             windowResizeHandler();
@@ -472,27 +513,27 @@
     });
 
     // functionality for map manipulation icon on mobile devices
-    $('.mapHandler').click(function() {
-        if ($('#mapView').hasClass('mob-min') || 
-            $('#mapView').hasClass('mob-max') || 
-            $('#content').hasClass('mob-min') || 
+    $('.mapHandler').click(function () {
+        if ($('#mapView').hasClass('mob-min') ||
+            $('#mapView').hasClass('mob-max') ||
+            $('#content').hasClass('mob-min') ||
             $('#content').hasClass('mob-max')) {
-                $('#mapView').toggleClass('mob-max');
-                $('#content').toggleClass('mob-min');
+            $('#mapView').toggleClass('mob-max');
+            $('#content').toggleClass('mob-min');
         } else {
             $('#mapView').toggleClass('min');
             $('#content').toggleClass('max');
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
             var priceSliderRangeLeft = parseInt($('.priceSlider .ui-slider-range').css('left'));
             var priceSliderRangeWidth = $('.priceSlider .ui-slider-range').width();
-            var priceSliderLeft = priceSliderRangeLeft + ( priceSliderRangeWidth / 2 ) - ( $('.priceSlider .sliderTooltip').width() / 2 );
+            var priceSliderLeft = priceSliderRangeLeft + (priceSliderRangeWidth / 2) - ($('.priceSlider .sliderTooltip').width() / 2);
             $('.priceSlider .sliderTooltip').css('left', priceSliderLeft);
 
             var areaSliderRangeLeft = parseInt($('.areaSlider .ui-slider-range').css('left'));
             var areaSliderRangeWidth = $('.areaSlider .ui-slider-range').width();
-            var areaSliderLeft = areaSliderRangeLeft + ( areaSliderRangeWidth / 2 ) - ( $('.areaSlider .sliderTooltip').width() / 2 );
+            var areaSliderLeft = areaSliderRangeLeft + (areaSliderRangeWidth / 2) - ($('.areaSlider .sliderTooltip').width() / 2);
             $('.areaSlider .sliderTooltip').css('left', areaSliderLeft);
 
             if (map) {
@@ -505,21 +546,21 @@
     });
 
     // Expand left side sub navigation menus
-    $(document).on("click", '.hasSubActive', function() {
+    $(document).on("click", '.hasSubActive', function () {
         $(this).toggleClass('active');
         $(this).children('ul').toggleClass('bigList');
         $(this).children('a').children('.arrowRight').toggleClass('fa-angle-down');
     });
 
-    if(isDevice) {
-        $('.hasSub').click(function() {
+    if (isDevice) {
+        $('.hasSub').click(function () {
             $('.leftNav ul li').not(this).removeClass('onTap');
             $(this).toggleClass('onTap');
         });
     }
 
     // functionality for custom dropdown select list
-    $('.dropdown-select li a').click(function() {
+    $('.dropdown-select li a').click(function () {
         if (!($(this).parent().hasClass('disabled'))) {
             $(this).prev().prop("checked", true);
             $(this).parent().siblings().removeClass('active');
@@ -534,26 +575,26 @@
         max: 2000000,
         values: [500000, 1500000],
         step: 10000,
-        slide: function(event, ui) {
+        slide: function (event, ui) {
             $('.priceSlider .sliderTooltip .stLabel').html(
-                '$' + ui.values[0].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + 
+                '$' + ui.values[0].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +
                 ' <span class="fa fa-arrows-h"></span> ' +
                 '$' + ui.values[1].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
             );
             var priceSliderRangeLeft = parseInt($('.priceSlider .ui-slider-range').css('left'));
             var priceSliderRangeWidth = $('.priceSlider .ui-slider-range').width();
-            var priceSliderLeft = priceSliderRangeLeft + ( priceSliderRangeWidth / 2 ) - ( $('.priceSlider .sliderTooltip').width() / 2 );
+            var priceSliderLeft = priceSliderRangeLeft + (priceSliderRangeWidth / 2) - ($('.priceSlider .sliderTooltip').width() / 2);
             $('.priceSlider .sliderTooltip').css('left', priceSliderLeft);
         }
     });
     $('.priceSlider .sliderTooltip .stLabel').html(
-        '$' + $('.priceSlider').slider('values', 0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + 
+        '$' + $('.priceSlider').slider('values', 0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") +
         ' <span class="fa fa-arrows-h"></span> ' +
         '$' + $('.priceSlider').slider('values', 1).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
     );
     var priceSliderRangeLeft = parseInt($('.priceSlider .ui-slider-range').css('left'));
     var priceSliderRangeWidth = $('.priceSlider .ui-slider-range').width();
-    var priceSliderLeft = priceSliderRangeLeft + ( priceSliderRangeWidth / 2 ) - ( $('.priceSlider .sliderTooltip').width() / 2 );
+    var priceSliderLeft = priceSliderRangeLeft + (priceSliderRangeWidth / 2) - ($('.priceSlider .sliderTooltip').width() / 2);
     $('.priceSlider .sliderTooltip').css('left', priceSliderLeft);
 
     $('.areaSlider').slider({
@@ -562,7 +603,7 @@
         max: 20000,
         values: [5000, 10000],
         step: 10,
-        slide: function(event, ui) {
+        slide: function (event, ui) {
             $('.areaSlider .sliderTooltip .stLabel').html(
                 ui.values[0].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' Sq Ft' +
                 ' <span class="fa fa-arrows-h"></span> ' +
@@ -570,7 +611,7 @@
             );
             var areaSliderRangeLeft = parseInt($('.areaSlider .ui-slider-range').css('left'));
             var areaSliderRangeWidth = $('.areaSlider .ui-slider-range').width();
-            var areaSliderLeft = areaSliderRangeLeft + ( areaSliderRangeWidth / 2 ) - ( $('.areaSlider .sliderTooltip').width() / 2 );
+            var areaSliderLeft = areaSliderRangeLeft + (areaSliderRangeWidth / 2) - ($('.areaSlider .sliderTooltip').width() / 2);
             $('.areaSlider .sliderTooltip').css('left', areaSliderLeft);
         }
     });
@@ -581,41 +622,41 @@
     );
     var areaSliderRangeLeft = parseInt($('.areaSlider .ui-slider-range').css('left'));
     var areaSliderRangeWidth = $('.areaSlider .ui-slider-range').width();
-    var areaSliderLeft = areaSliderRangeLeft + ( areaSliderRangeWidth / 2 ) - ( $('.areaSlider .sliderTooltip').width() / 2 );
+    var areaSliderLeft = areaSliderRangeLeft + (areaSliderRangeWidth / 2) - ($('.areaSlider .sliderTooltip').width() / 2);
     $('.areaSlider .sliderTooltip').css('left', areaSliderLeft);
 
-    $('.volume .btn-round-right').click(function() {
+    $('.volume .btn-round-right').click(function () {
         var currentVal = parseInt($(this).siblings('input').val());
         if (currentVal < 10) {
             $(this).siblings('input').val(currentVal + 1);
         }
     });
-    $('.volume .btn-round-left').click(function() {
+    $('.volume .btn-round-left').click(function () {
         var currentVal = parseInt($(this).siblings('input').val());
         if (currentVal > 1) {
             $(this).siblings('input').val(currentVal - 1);
         }
     });
 
-    $('.handleFilter').click(function() {
+    $('.handleFilter').click(function () {
         $('.filterForm').slideToggle(200);
     });
 
     //Enable swiping
-    $(".carousel-inner").swipe( {
-        swipeLeft:function(event, direction, distance, duration, fingerCount) {
-            $(this).parent().carousel('next'); 
+    $(".carousel-inner").swipe({
+        swipeLeft: function (event, direction, distance, duration, fingerCount) {
+            $(this).parent().carousel('next');
         },
-        swipeRight: function() {
+        swipeRight: function () {
             $(this).parent().carousel('prev');
         }
     });
 
-    $(".carousel-inner .card").click(function() {
+    $(".carousel-inner .card").click(function () {
         window.open($(this).attr('data-linkto'), '_self');
     });
 
-    $('#content').scroll(function() {
+    $('#content').scroll(function () {
         if ($('.comments').length > 0) {
             var visible = $('.comments').visible(true);
             if (visible) {
@@ -626,7 +667,7 @@
         }
     });
 
-    $('.btn').click(function() {
+    $('.btn').click(function () {
         if ($(this).is('[data-toggle-class]')) {
             $(this).toggleClass('active ' + $(this).attr('data-toggle-class'));
         }
@@ -658,7 +699,7 @@
         slide: repositionTooltip,
         stop: repositionTooltip
     });
-    $("#slider1 .ui-slider-handle:first").tooltip({ title: $("#slider1").slider("value"), trigger: "manual"}).tooltip("show");
+    $("#slider1 .ui-slider-handle:first").tooltip({ title: $("#slider1").slider("value"), trigger: "manual" }).tooltip("show");
 
     $("#slider2").slider({
         range: "max",
@@ -668,18 +709,18 @@
         slide: repositionTooltip,
         stop: repositionTooltip
     });
-    $("#slider2 .ui-slider-handle:first").tooltip({ title: $("#slider2").slider("value"), trigger: "manual"}).tooltip("show");
+    $("#slider2 .ui-slider-handle:first").tooltip({ title: $("#slider2").slider("value"), trigger: "manual" }).tooltip("show");
 
     $("#slider3").slider({
         range: true,
         min: 0,
         max: 500,
-        values: [ 190, 350 ],
+        values: [190, 350],
         slide: repositionTooltip,
         stop: repositionTooltip
     });
-    $("#slider3 .ui-slider-handle:first").tooltip({ title: $("#slider3").slider("values", 0), trigger: "manual"}).tooltip("show");
-    $("#slider3 .ui-slider-handle:last").tooltip({ title: $("#slider3").slider("values", 1), trigger: "manual"}).tooltip("show");
+    $("#slider3 .ui-slider-handle:first").tooltip({ title: $("#slider3").slider("values", 0), trigger: "manual" }).tooltip("show");
+    $("#slider3 .ui-slider-handle:last").tooltip({ title: $("#slider3").slider("values", 1), trigger: "manual" }).tooltip("show");
 
     $('#autocomplete').autocomplete({
         source: ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"],
@@ -687,7 +728,7 @@
             var label = ui.item.label;
             var value = ui.item.value;
             var me = $(this);
-            setTimeout(function() {
+            setTimeout(function () {
                 me.val(value);
             }, 1);
         }
@@ -706,7 +747,7 @@
         var address = document.getElementById('address');
         var addressAuto = new google.maps.places.Autocomplete(address);
 
-        google.maps.event.addListener(addressAuto, 'place_changed', function() {
+        google.maps.event.addListener(addressAuto, 'place_changed', function () {
             var place = addressAuto.getPlace();
 
             if (!place.geometry) {

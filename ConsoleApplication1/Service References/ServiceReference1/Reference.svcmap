@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b93097f1-8420-4e5b-bc91-c2c737e69259" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7673/Property365.Service.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Property365.xsd" MetadataType="Schema" ID="f74a531a-ddcd-4f6c-b444-7d9fa71f6730" SourceId="1" SourceUrl="http://localhost:7673/Property365.Service.svc?xsd=xsd1" />
+    <MetadataFile FileName="Property3651.xsd" MetadataType="Schema" ID="5ba103fc-8334-41f4-8987-7cc434ed0599" SourceId="1" SourceUrl="http://localhost:7673/Property365.Service.svc?xsd=xsd0" />
+    <MetadataFile FileName="Property365.disco" MetadataType="Disco" ID="b4feb7df-b21e-4864-9519-ba88c65ea48d" SourceId="1" SourceUrl="http://localhost:7673/Property365.Service.svc?disco" />
+    <MetadataFile FileName="Property365Service.wsdl" MetadataType="Wsdl" ID="24d13931-70e5-489c-99a5-f112cdd8cdc5" SourceId="1" SourceUrl="http://localhost:7673/Property365.Service.svc?wsdl" />
+    <MetadataFile FileName="Property3652.xsd" MetadataType="Schema" ID="14310ed5-054c-4c87-8643-99b259193fce" SourceId="1" SourceUrl="http://localhost:7673/Property365.Service.svc?xsd=xsd3" />
+    <MetadataFile FileName="Property3653.xsd" MetadataType="Schema" ID="8bb0e96b-39ef-451a-b7c2-53383930e73f" SourceId="1" SourceUrl="http://localhost:7673/Property365.Service.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

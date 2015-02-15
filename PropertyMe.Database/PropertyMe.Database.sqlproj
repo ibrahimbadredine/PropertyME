@@ -63,7 +63,7 @@
     <Folder Include="Data" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Property.sql" />
+    <Build Include="Tables\MyProperty.sql" />
     <Build Include="Tables\Picture.sql" />
     <Build Include="Tables\Category.sql" />
     <Build Include="Tables\Agent.sql" />

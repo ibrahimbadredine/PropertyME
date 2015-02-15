@@ -16,7 +16,7 @@ namespace PropertyMe.EF
     {
         public Agent()
         {
-            this.Properties = new HashSet<Property>();
+            this.Properties = new HashSet<MyProperty>();
         }
     
         public int ID { get; set; }
@@ -25,6 +25,6 @@ namespace PropertyMe.EF
     
         public virtual Agency Agency { get; set; }
         public virtual User User { get; set; }
-        public virtual ICollection<Property> Properties { get; set; }
+        public virtual ICollection<MyProperty> Properties { get; set; }
     }
 }

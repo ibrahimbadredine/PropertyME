@@ -16,7 +16,7 @@ namespace PropertyMe.EF
     {
         public Category()
         {
-            this.Properties = new HashSet<Property>();
+            this.Properties = new HashSet<MyProperty>();
         }
     
         public int ID { get; set; }
@@ -24,6 +24,6 @@ namespace PropertyMe.EF
         public Nullable<long> PictureID { get; set; }
     
         public virtual Picture Picture { get; set; }
-        public virtual ICollection<Property> Properties { get; set; }
+        public virtual ICollection<MyProperty> Properties { get; set; }
     }
 }
