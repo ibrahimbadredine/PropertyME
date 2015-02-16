@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8cd618556c7a4c5ba75d399b08901963" Name="Diagram1">
+        <EntityTypeShape EntityType="Property365Model.Agency" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.Agent" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.Category" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.Permission" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.PermissionType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.Picture" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.MyProperty" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.PropertyPicture" Width="1.5" PointX="12" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.Role" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Property365Model.User" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="Property365Model.FK_Agency_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_Agent_Agency" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_Agent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_Property_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_Category_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_Property_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_Permission_PermissionType" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_Permission_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_PropertyPictures_Picture" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_PropertyPictures_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="Property365Model.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

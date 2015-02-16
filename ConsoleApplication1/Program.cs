@@ -17,7 +17,9 @@ namespace ConsoleApplication1
             srv.Open();
             var agents = srv.GetAgentList();
             srv.Close();
-            var temp = new DataManager().AgentList();
+            //var temp = new DataManager().AgentList();
+            //Console.WriteLine("tesmp");
+            Console.ReadLine();
         }
     }
 }

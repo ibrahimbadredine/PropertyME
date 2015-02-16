@@ -33,7 +33,6 @@ namespace PropertyMe.Services
         //UriTemplate = "AddProperty/")]
         //bool AddProperty(Property newProperty);
 
-
         [OperationContract]
         [WebInvoke(Method = "GET",
         RequestFormat = WebMessageFormat.Json,

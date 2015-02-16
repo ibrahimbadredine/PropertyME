@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +45,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,79 +56,76 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agency.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="Agent.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="DataManager.cs" />
     <Compile Include="MyProperty.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="Permission.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="PermissionType.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="Picture.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="property365.Context.cs">
+    <Compile Include="property365EF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>property365.Context.tt</DependentUpon>
+      <DependentUpon>property365EF.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="property365.cs">
+    <Compile Include="property365EF.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
-    <Compile Include="property365.Designer.cs">
+    <Compile Include="property365EF.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>property365.edmx</DependentUpon>
+      <DependentUpon>property365EF.edmx</DependentUpon>
     </Compile>
     <Compile Include="PropertyPicture.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>property365.tt</DependentUpon>
+      <DependentUpon>property365EF.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="property365.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>property365.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
-    <None Include="property365.Context.tt">
+    <EntityDeploy Include="property365EF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>property365EF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="property365EF.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>property365.edmx</DependentUpon>
-      <LastGenOutput>property365.Context.cs</LastGenOutput>
+      <DependentUpon>property365EF.edmx</DependentUpon>
+      <LastGenOutput>property365EF.Context.cs</LastGenOutput>
     </None>
-    <None Include="property365.edmx.diagram">
-      <DependentUpon>property365.edmx</DependentUpon>
+    <None Include="property365EF.edmx.diagram">
+      <DependentUpon>property365EF.edmx</DependentUpon>
     </None>
-    <None Include="property365.tt">
+    <None Include="property365EF.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>property365.edmx</DependentUpon>
-      <LastGenOutput>property365.cs</LastGenOutput>
+      <DependentUpon>property365EF.edmx</DependentUpon>
+      <LastGenOutput>property365EF.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

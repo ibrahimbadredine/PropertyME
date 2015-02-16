@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/PropertyMe.EF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/PropertyMe.EF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3838/Property365Service.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Entity.Spatial" />
+  <xs:complexType name="ArrayOfAgent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Agent" nillable="true" type="tns:Agent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAgent" nillable="true" type="tns:ArrayOfAgent" />
+  <xs:complexType name="Agent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Agency" nillable="true" type="tns:Agency" />
+      <xs:element minOccurs="0" name="AgencyID" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Properties" nillable="true" type="tns:ArrayOfMyProperty" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserID" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Agent" nillable="true" type="tns:Agent" />
+  <xs:complexType name="Agency">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Agents" nillable="true" type="tns:ArrayOfAgent" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+      <xs:element minOccurs="0" name="UserID" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Agency" nillable="true" type="tns:Agency" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Agencies" nillable="true" type="tns:ArrayOfAgency" />
+      <xs:element minOccurs="0" name="Agents" nillable="true" type="tns:ArrayOfAgent" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PictureID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Role" nillable="true" type="tns:Role" />
+      <xs:element minOccurs="0" name="RoleID" type="xs:int" />
+      <xs:element minOccurs="0" name="Tel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isActive" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfAgency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Agency" nillable="true" type="tns:Agency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAgency" nillable="true" type="tns:ArrayOfAgency" />
+  <xs:complexType name="Role">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Permissions" nillable="true" type="tns:ArrayOfPermission" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Role" nillable="true" type="tns:Role" />
+  <xs:complexType name="ArrayOfPermission">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Permission" nillable="true" type="tns:Permission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPermission" nillable="true" type="tns:ArrayOfPermission" />
+  <xs:complexType name="Permission">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="PermissionType" nillable="true" type="tns:PermissionType" />
+      <xs:element minOccurs="0" name="PermissionTypeID" type="xs:int" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+      <xs:element minOccurs="0" name="Role" nillable="true" type="tns:Role" />
+      <xs:element minOccurs="0" name="RoleID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Permission" nillable="true" type="tns:Permission" />
+  <xs:complexType name="PermissionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Permissions" nillable="true" type="tns:ArrayOfPermission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PermissionType" nillable="true" type="tns:PermissionType" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="ArrayOfMyProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MyProperty" nillable="true" type="tns:MyProperty" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMyProperty" nillable="true" type="tns:ArrayOfMyProperty" />
+  <xs:complexType name="MyProperty">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Agent" nillable="true" type="tns:Agent" />
+      <xs:element minOccurs="0" name="AgentID" type="xs:int" />
+      <xs:element minOccurs="0" name="Area" type="xs:int" />
+      <xs:element minOccurs="0" name="Bathroom" type="xs:int" />
+      <xs:element minOccurs="0" name="Bedroom" type="xs:int" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="tns:Category" />
+      <xs:element minOccurs="0" name="CategoryID" type="xs:int" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="IsRent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsSale" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Entity.Spatial" minOccurs="0" name="Location" nillable="true" type="q1:DbGeography" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PropertyPictures" nillable="true" type="tns:ArrayOfPropertyPicture" />
+      <xs:element minOccurs="0" name="ReferenceNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyProperty" nillable="true" type="tns:MyProperty" />
+  <xs:complexType name="Category">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="tns:Picture" />
+      <xs:element minOccurs="0" name="PictureID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Properties" nillable="true" type="tns:ArrayOfMyProperty" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="Picture">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Categories" nillable="true" type="tns:ArrayOfCategory" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="PropertyPictures" nillable="true" type="tns:ArrayOfPropertyPicture" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Picture" nillable="true" type="tns:Picture" />
+  <xs:complexType name="ArrayOfCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
+  <xs:complexType name="ArrayOfPropertyPicture">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PropertyPicture" nillable="true" type="tns:PropertyPicture" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPropertyPicture" nillable="true" type="tns:ArrayOfPropertyPicture" />
+  <xs:complexType name="PropertyPicture">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="tns:Picture" />
+      <xs:element minOccurs="0" name="PictureID" type="xs:long" />
+      <xs:element minOccurs="0" name="Property" nillable="true" type="tns:MyProperty" />
+      <xs:element minOccurs="0" name="PropertyID" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PropertyPicture" nillable="true" type="tns:PropertyPicture" />
+</xs:schema>
