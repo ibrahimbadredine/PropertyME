@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Property]
+﻿CREATE TABLE [dbo].[MyProperty]
 (
 	[ID] BIGINT NOT NULL PRIMARY KEY,
 	[Title] NVARCHAR(30) NOT NULL,
