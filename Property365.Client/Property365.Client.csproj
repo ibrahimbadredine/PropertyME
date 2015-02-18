@@ -104,9 +104,6 @@
     <Compile Include="Category.cs">
       <DependentUpon>Property365.tt</DependentUpon>
     </Compile>
-    <Compile Include="C__RefactorLog.cs">
-      <DependentUpon>Property365.tt</DependentUpon>
-    </Compile>
     <Compile Include="MyProperty.cs">
       <DependentUpon>Property365.tt</DependentUpon>
     </Compile>
@@ -148,7 +145,12 @@
       <DependentUpon>Property365.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Property365.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -156,7 +158,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
     <Content Include="Property365.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Property365.edmx</DependentUpon>
@@ -170,9 +171,6 @@
       <DependentUpon>Property365.edmx</DependentUpon>
       <LastGenOutput>Property365.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

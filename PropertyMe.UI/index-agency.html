@@ -195,59 +195,15 @@
             <div class="table-overflow">
                 <table class="table">
                     <thead>
-                        <tr ng-repeat="ag in agents">
-                            <th>ag.Name</th>
-                            <th>Account Created</th>
+                        <tr>
+                            <th>Name</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody class="table">
-                        <tr>
-                            <td><span class="userName">John Smith</span></td>
-                            <td>August 24, 2013</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-pencil"></span> Edit</a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-remove"></span> Delete</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span class="userName">Jane Smith</span></td>
-                            <td>September 13, 2013</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-pencil"></span> Edit</a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-remove"></span> Delete</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span class="userName">Rust Cohle</span></td>
-                            <td>July 8, 2014</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-pencil"></span> Edit</a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-remove"></span> Delete</a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span class="userName">Antony Iglesias</span></td>
-                            <td>September 10, 2014</td>
+                        <tr ng-repeat="ag in agents">
+                            <td><span class="userName">{{ag.User.Name}}</span></td>
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-pencil"></span> Edit</a>

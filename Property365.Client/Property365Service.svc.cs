@@ -14,6 +14,7 @@ using System.Web;
 
 namespace Property365.Client
 {
+    //[JSONPSupportBehavior]
     public class Property365Service : EntityFrameworkDataService<Property365Entities>
     {
         // This method is called only once to initialize service-wide policies.
@@ -23,6 +24,8 @@ namespace Property365.Client
             // Examples:
             // config.SetEntitySetAccessRule("MyEntityset", EntitySetRights.AllRead);
             // config.SetServiceOperationAccessRule("MyServiceOperation", ServiceOperationRights.All);
+            config.SetEntitySetAccessRule("*", EntitySetRights.All);
+            config.SetServiceOperationAccessRule("*", ServiceOperationRights.All);
             config.DataServiceBehavior.MaxProtocolVersion = DataServiceProtocolVersion.V3;
         }
     }

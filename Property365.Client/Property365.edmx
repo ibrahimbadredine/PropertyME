@@ -5,12 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Property365Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
         <EntityType Name="Agency">
           <Key>
             <PropertyRef Name="ID" />
@@ -39,6 +33,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
           <Property Name="Area" Type="int" Nullable="false" />
@@ -47,7 +42,8 @@
           <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="300" />
           <Property Name="AgentID" Type="int" Nullable="false" />
-          <Property Name="Location" Type="geography" Nullable="false" />
+          <Property Name="Long" Type="decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="Lat" Type="decimal" Precision="18" Scale="15" Nullable="false" />
           <Property Name="IsSale" Type="bit" Nullable="false" />
           <Property Name="IsRent" Type="bit" Nullable="false" />
         </EntityType>
@@ -236,7 +232,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Property365ModelStoreContainer">
-          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -297,12 +292,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Property365Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__RefactorLog">
-          <Key>
-            <PropertyRef Name="OperationKey" />
-          </Key>
-          <Property Name="OperationKey" Type="Guid" Nullable="false" />
-        </EntityType>
         <EntityType Name="Agency">
           <Key>
             <PropertyRef Name="ID" />
@@ -338,6 +327,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="Area" Type="Int32" Nullable="false" />
@@ -346,7 +336,8 @@
           <Property Name="ReferenceNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="AgentID" Type="Int32" Nullable="false" />
-          <Property Name="Location" Type="Geography" Nullable="false" />
+          <Property Name="Long" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="Lat" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
           <Property Name="IsSale" Type="Boolean" Nullable="false" />
           <Property Name="IsRent" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Agent" Relationship="Self.FK_Property_Agent" FromRole="MyProperty" ToRole="Agent" />
@@ -550,7 +541,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Property365Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Agencies" EntityType="Self.Agency" />
           <EntitySet Name="Agents" EntityType="Self.Agent" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
@@ -612,13 +602,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Property365ModelStoreContainer" CdmEntityContainer="Property365Entities">
-          <EntitySetMapping Name="C__RefactorLog">
-            <EntityTypeMapping TypeName="Property365Model.C__RefactorLog">
-              <MappingFragment StoreEntitySet="__RefactorLog">
-                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Agencies">
             <EntityTypeMapping TypeName="Property365Model.Agency">
               <MappingFragment StoreEntitySet="Agency">
@@ -649,6 +632,7 @@
             <EntityTypeMapping TypeName="Property365Model.MyProperty">
               <MappingFragment StoreEntitySet="MyProperty">
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
@@ -657,7 +641,8 @@
                 <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="AgentID" ColumnName="AgentID" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="IsSale" ColumnName="IsSale" />
                 <ScalarProperty Name="IsRent" ColumnName="IsRent" />
               </MappingFragment>

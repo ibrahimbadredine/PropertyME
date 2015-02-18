@@ -25,7 +25,6 @@ namespace Property365.Client
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<Agency> Agencies { get; set; }
         public virtual DbSet<Agent> Agents { get; set; }
         public virtual DbSet<Category> Categories { get; set; }

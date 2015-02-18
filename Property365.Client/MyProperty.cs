@@ -20,6 +20,7 @@ namespace Property365.Client
         }
     
         public long ID { get; set; }
+        public string Title { get; set; }
         public decimal Price { get; set; }
         public int CategoryID { get; set; }
         public int Area { get; set; }
@@ -28,7 +29,8 @@ namespace Property365.Client
         public string ReferenceNumber { get; set; }
         public string Description { get; set; }
         public int AgentID { get; set; }
-        public System.Data.Entity.Spatial.DbGeography Location { get; set; }
+        public decimal Long { get; set; }
+        public decimal Lat { get; set; }
         public bool IsSale { get; set; }
         public bool IsRent { get; set; }
     
