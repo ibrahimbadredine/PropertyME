@@ -221,31 +221,31 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
             <div class="panel panel-default">
-                <div class="panel-heading">New Agent</div>
+                <div class="panel-heading"><span class="newAgent">New</span><span class="editAgent">Edit</span> Agent</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" placeholder="Name" ng-model="agent.Name">
+                                <input class="form-control" type="text" placeholder="Name" ng-model="agent.User.Name">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Password</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="password" placeholder="Password" ng-model="agent.Password">
+                                <input class="form-control" type="password" placeholder="Password" ng-model="agent.User.Password">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Mobile</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="tel" placeholder="Mobile" ng-model="agent.Mobile">
+                                <input class="form-control" type="tel" placeholder="Mobile" ng-model="agent.User.Tel">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="email" placeholder="Email" ng-model="agent.Email">
+                                <input class="form-control" type="email" placeholder="Email" ng-model="agent.User.Email">
                             </div>
                         </div>
                         <div class="form-group">
@@ -253,7 +253,7 @@
                             <div class="col-sm-10">
                                 <div class="btn-group">
                                     <button data-toggle="dropdown" class="btn btn-o btn-gray dropdown-toggle">
-                                        <span class="dropdown-label">Select Role</span> <span class="caret"></span>
+                                        <span class="dropdown-label">{{selectedRole}}</span> <span class="caret"></span>
                                     </button>
                                     <!--<ul class="dropdown-menu dropdown-select">
                                         <li class="active"><input type="radio" name="ds1" checked="checked"><a href="#">Admin</a></li>
@@ -262,7 +262,9 @@
                                         <li><input type="radio" name="ds1"><a href="#">User</a></li>
                                     </ul>-->
                                     <ul class="dropdown-menu dropdown-select">
-                                        <li typeof="radio" ng-repeat="list in templateList" ng-click="setValue(list)"><a href="#">{{list.name}}</a></li>
+                                        <li typeof="radio" ng-repeat="list in templateList">
+                                            <a href="#" ng-click="setValue(list)">{{list.name}}</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -270,7 +272,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">About me</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <textarea class="form-control" rows="3" ng-model="agent.User.Description"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -299,6 +301,7 @@
     <script src="js/jquery.visible.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/angular-resource.min.js"></script>
+    <script src="js/ngApp.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=geometry&amp;libraries=places" type="text/javascript"></script>
     <script src="js/infobox.js"></script>
     <script src="js/tablesorter.js"></script>

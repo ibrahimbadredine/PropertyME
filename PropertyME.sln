@@ -1,36 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PropertyMe.Database", "PropertyMe.Database\PropertyMe.Database.sqlproj", "{585D7667-2019-43BB-99DA-357F19ECA635}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PropertyMe.UI", "http://localhost:11337", "{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.EF", "PropertyMe.EF\PropertyMe.EF.csproj", "{30C72202-B431-4C9D-9863-480F1F423772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Property365.Client", "Property365.Client\Property365.Client.csproj", "{F5D8B531-E8F7-4BEE-ABD3-D78060BEC55B}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PropertyMe.UI", "http://localhost:28504", "{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_11337"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_28504"
 		Debug.AspNetCompiler.PhysicalPath = "PropertyMe.UI\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_11337\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_28504\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_11337"
+		Release.AspNetCompiler.VirtualPath = "/localhost_28504"
 		Release.AspNetCompiler.PhysicalPath = "PropertyMe.UI\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_11337\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_28504\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		SlnRelativePath = "PropertyMe.UI\"
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.EF", "PropertyMe.EF\PropertyMe.EF.csproj", "{30C72202-B431-4C9D-9863-480F1F423772}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyMe.Services", "PropertyMe.Services\PropertyMe.Services.csproj", "{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Property365.Client", "Property365.Client\Property365.Client.csproj", "{F5D8B531-E8F7-4BEE-ABD3-D78060BEC55B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,21 +41,18 @@ Global
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Release|Any CPU.Build.0 = Release|Any CPU
 		{585D7667-2019-43BB-99DA-357F19ECA635}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{30C72202-B431-4C9D-9863-480F1F423772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30C72202-B431-4C9D-9863-480F1F423772}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C72202-B431-4C9D-9863-480F1F423772}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C72202-B431-4C9D-9863-480F1F423772}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59AC6F05-58AA-4A55-A2D8-F3BC9733E0CB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5D8B531-E8F7-4BEE-ABD3-D78060BEC55B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5D8B531-E8F7-4BEE-ABD3-D78060BEC55B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5D8B531-E8F7-4BEE-ABD3-D78060BEC55B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5D8B531-E8F7-4BEE-ABD3-D78060BEC55B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
