@@ -38,12 +38,7 @@ angular.module('prop365App.services', [])
     });
 
 angular.module('prop365App.controllers', []).controller('agentController', function ($scope, agentFactory) {
-    $scope.templateList = [{ id: 0, name: 'Select Role' }, { id: 1, name: 'Admin' }, { id: 2, name: 'Agency' }, { id: 3, name: 'Agent' }, { id: 4, name: 'User' }]
-    $scope.selectedRole = 'Select Role';
-    $scope.setValue = function (list) {
-        //$scope.agent.user.RoleID = list.id;
-        $scope.selectedRole = list.name;
-    }
+
     new agentFactory().$getAll()
             .then(function (data) {
                 $scope.agents = data.value;
@@ -56,13 +51,6 @@ angular.module('prop365App.controllers', []).controller('agentController', funct
             });
         }
     }
-
-    //}).controller('MovieViewController',function($scope,$stateParams,Movie){
-    //$scope.agent = agentFactory.get({ id: agent.id });
-
-    //}).controller('MovieCreateController',function($scope,$state,$stateParams,Movie){
-
-    //$scope.agent = new agentFactory();
 
     $scope.addAgent = function () {
         $scope.agent.$save(function () {

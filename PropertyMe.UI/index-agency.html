@@ -252,19 +252,15 @@
                             <label class="col-sm-2 control-label">Role</label>
                             <div class="col-sm-10">
                                 <div class="btn-group">
-                                    <button data-toggle="dropdown" class="btn btn-o btn-gray dropdown-toggle">
-                                        <span class="dropdown-label">{{selectedRole}}</span> <span class="caret"></span>
-                                    </button>
-                                    <!--<ul class="dropdown-menu dropdown-select">
-                                        <li class="active"><input type="radio" name="ds1" checked="checked"><a href="#">Admin</a></li>
-                                        <li><input type="radio" name="ds1"><a href="#">Agency</a></li>
-                                        <li><input type="radio" name="ds1"><a href="#">Agent</a></li>
-                                        <li><input type="radio" name="ds1"><a href="#">User</a></li>
-                                    </ul>-->
+                                    <div class="clearfix"></div>
+                                    <a href="#" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                        <span class="dropdown-label">Admin</span>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                                    </a>
                                     <ul class="dropdown-menu dropdown-select">
-                                        <li typeof="radio" ng-repeat="list in templateList">
-                                            <a href="#" ng-click="setValue(list)">{{list.name}}</a>
-                                        </li>
+                                        <li class="active"><input type="radio" checked="checked"><a href="#" ng-click="agent.User.RoleID =1">Admin</a></li>
+                                        <li><input type="radio"><a href="#" ng-click="agent.User.RoleID =2">Agency</a></li>
+                                        <li><input type="radio"><a href="#" ng-click="agent.User.RoleID =3">Agent</a></li>
+                                        <li><input type="radio"><a href="#" ng-click="agent.User.RoleID =4">User</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -282,7 +278,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <a href="#" class="btn btn-green btn-lg">Add Agent</a>
+                            <a href="#" class="btn btn-green btn-lg" ng-click="addAgent()">Add Agent</a>
                         </div>
                     </form>
                 </div>
