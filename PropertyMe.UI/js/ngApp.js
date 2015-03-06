@@ -26,11 +26,11 @@ angular.module('prop365App.services', [])
         var odataUrl = "http://localhost:8154/Property365Service.svc/Agents/";
         return $resource("", {},
         {
-            'getAll': { method: "GET", url: "http://localhost:8154/Property365Service.svc/Agents?$expand=User/Role&$format=json" },
-            'save': { method: "POST", url: odataUrl },
-            'update': { method: 'PUT', params: { key: "@key" }, url: odataUrl + "(:key)" },
-            'query': { method: 'GET', params: { key: "@key" }, url: odataUrl + "(:key)" },
-            'remove': { method: 'DELETE', params: { key: "@key" }, url: odataUrl + "(:key)" }
+            getAll: { method: "GET", url: "http://localhost:8154/Property365Service.svc/Agents?$expand=User/Role&$format=json" },
+            save: { method: "POST", url: odataUrl },
+            //'update': { method: 'PUT', params: { key: "@key" }, url: odataUrl + "(:key)" },
+            //'query': { method: 'GET', params: { key: "@key" }, url: odataUrl + "(:key)" },
+            //'remove': { method: 'DELETE', params: { key: "@key" }, url: odataUrl + "(:key)" }
         });
         //return $resource('http://localhost:7673/Property365.Service.svc/:id', {}, {
         //    query: { method: 'GET', params: {}, isArray: false}
@@ -39,7 +39,9 @@ angular.module('prop365App.services', [])
 
 angular.module('prop365App.controllers', []).controller('agentController', function ($scope, agentFactory) {
 
-    new agentFactory().$getAll()
+    agentFactory = new agentFactory();
+
+    agentFactory.$getAll()
             .then(function (data) {
                 $scope.agents = data.value;
             });
@@ -47,13 +49,13 @@ angular.module('prop365App.controllers', []).controller('agentController', funct
     $scope.deleteAgent = function (agent) {
         if (popupService.showPopup('Really delete this agent?')) {
             agent.$delete(function () {
-                $window.location.href = '';
+                //$window.location.href = '';
             });
         }
     }
 
     $scope.addAgent = function () {
-        $scope.agent.$save(function () {
+        agentFactory.$save(function () {
             //$state.go('movies');
         });
     }
