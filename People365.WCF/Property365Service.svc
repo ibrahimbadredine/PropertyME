@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="People365.WCF.Property365Service" CodeBehind="Property365Service.svc.cs" %>
