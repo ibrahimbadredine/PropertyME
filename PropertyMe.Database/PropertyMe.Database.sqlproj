@@ -65,12 +65,10 @@
   <ItemGroup>
     <Build Include="Tables\MyProperty.sql" />
     <Build Include="Tables\Picture.sql" />
-    <Build Include="Tables\Category.sql" />
-    <Build Include="Tables\Agent.sql" />
-    <Build Include="Tables\Agency.sql" />
+    <Build Include="Tables\PropertyCategory.sql" />
     <Build Include="Tables\PropertyPictures.sql" />
-    <Build Include="Tables\User.sql" />
-    <Build Include="Tables\Role.sql" />
+    <Build Include="Tables\PropertyUser.sql" />
+    <Build Include="Tables\PropertyRole.sql" />
     <Build Include="Tables\Permissions.sql" />
     <Build Include="Tables\Notifications.sql" />
     <Build Include="Tables\PermissionType.sql" />

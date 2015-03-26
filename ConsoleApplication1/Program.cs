@@ -1,7 +1,9 @@
-﻿using PropertyMe.EF;
+﻿using People365.WCF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Web;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,15 +12,12 @@ namespace ConsoleApplication1
     class Program
     {
         static void Main(string[] args)
-        {
-            ServiceReference1.Property365ServiceClient srv = new ServiceReference1.Property365ServiceClient();
+        {            
+            ServiceHost sh = new ServiceHost(typeof(Property365Service),
+                new Uri("http://localhost:62640/Property365Service"));
 
+            sh.Open();
 
-            srv.Open();
-            var agents = srv.GetAgentList();
-            srv.Close();
-            //var temp = new DataManager().AgentList();
-            //Console.WriteLine("tesmp");
             Console.ReadLine();
         }
     }

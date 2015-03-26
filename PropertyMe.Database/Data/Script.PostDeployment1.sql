@@ -12,18 +12,14 @@ Post-Deployment Script Template
 
 USE [Property365]
 GO
-INSERT [dbo].[Role] ([ID], [Name]) VALUES (1, N'Admin')
+INSERT [dbo].[PropertyRole] ([Name]) VALUES (N'Admin')
 GO
-INSERT [dbo].[Role] ([ID], [Name]) VALUES (2, N'Agency')
+INSERT [dbo].[PropertyRole] ([Name]) VALUES (N'Agency')
 GO
-INSERT [dbo].[Role] ([ID], [Name]) VALUES (3, N'Agent')
+INSERT [dbo].[PropertyRole] ([Name]) VALUES (N'Agent')
 GO
-INSERT [dbo].[Role] ([ID], [Name]) VALUES (4, N'User')
+INSERT [dbo].[PropertyRole] ([Name]) VALUES (N'User')
 GO
-INSERT [dbo].[User] ([ID], [Name], [Password], [Tel], [Email], [Description], [PictureID], [RoleID], [isActive]) VALUES (1, N'Ibrahim Badredine', N'boomer', N'70683378', N'ibrahimbadredine@gmail.com', N'The administrator', NULL, 1, 1)
-GO
-INSERT [dbo].[Agency] ([ID], [UserID]) VALUES (1, 1)
-GO
-INSERT [dbo].[Agent] ([ID], [UserID], [AgencyID]) VALUES (1, 1, 1)
+INSERT [dbo].[PropertyUser] ([Name], [Password], [Tel], [Email], [Description], [PictureID], [PropertyRoleID], [isActive]) VALUES (N'Ibrahim Badredine', N'boomer', N'70683378', N'ibrahimbadredine@gmail.com', N'The administrator', NULL, 1, 1)
 GO
 

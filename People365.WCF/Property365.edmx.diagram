@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a9272742bd344fd88271ec2c20b2b945" Name="Diagram1">
-        <EntityTypeShape EntityType="Property365Model.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="6fef3f8dc9a241ba913d1c0f17ba3e8e" Name="Diagram1">
+        <EntityTypeShape EntityType="Property365Model.PropertyUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

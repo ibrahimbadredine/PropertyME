@@ -1,76 +1,34 @@
-﻿angular.module('prop365App', ['ngResource', 'prop365App.services', 'prop365App.controllers']);
-//angular.module('prop365App').config(function ($stateProvider, $httpProvider) {
-//    $stateProvider.state('agents', {
-//        url: '/agents',
-//        templateUrl: '../index-agency.html',
-//        controller: 'agentController'
-//        //}).state('viewMovie', {
-//        //    url: '/movies/:id/view',
-//        //    templateUrl: 'partials/movie-view.html',
-//        //    controller: 'MovieViewController'
-//        //}).state('newMovie', {
-//        //    url: '/movies/new',
-//        //    templateUrl: 'partials/movie-add.html',
-//        //    controller: 'MovieCreateController'
-//        //}).state('editMovie', {
-//        //    url: '/movies/:id/edit',
-//        //    templateUrl: 'partials/movie-edit.html',
-//        //    controller: 'MovieEditController'
-//    });
-//    //}).run(function ($state) {
-//    //    $state.go('movies');
-//});
+﻿
+angular.module('prop365App', ['ngResource', 'prop365App.services', 'prop365App.controllers']);
 
 angular.module('prop365App.services', [])
-    .factory('agentFactory', function ($resource) {
-        var odataUrl = "http://localhost:8154/Property365Service.svc/Agents/";
-        return $resource("", {},
-        {
-            getAll: { method: "GET", url: "http://localhost:8154/Property365Service.svc/Agents?$expand=User/Role&$format=json" },
-            save: { method: "POST", url: odataUrl },
-            //'update': { method: 'PUT', params: { key: "@key" }, url: odataUrl + "(:key)" },
-            //'query': { method: 'GET', params: { key: "@key" }, url: odataUrl + "(:key)" },
-            //'remove': { method: 'DELETE', params: { key: "@key" }, url: odataUrl + "(:key)" }
-        });
-        //return $resource('http://localhost:7673/Property365.Service.svc/:id', {}, {
-        //    query: { method: 'GET', params: {}, isArray: false}
+    .factory('userFactory', function ($resource) {
+        return $resource("http://localhost:62640/Property365Service/Users/:userId");
+        //    , {},
+        //{
+        //    getAll: { method: "GET", url: "http://localhost:8154/Property365Service.svc/Users?$format=json" },
+        //    save: { method: "POST", url: "http://localhost:8154/Property365Service.svc/Users" },
         //});
     });
 
-angular.module('prop365App.controllers', []).controller('agentController', function ($scope, agentFactory) {
+angular.module('prop365App.controllers', []).controller('userController', function ($scope, userFactory) {
 
-    agentFactory = new agentFactory();
+    $scope.users = userFactory.query();
+    //userFactory = new userFactory();
 
-    agentFactory.$getAll()
-            .then(function (data) {
-                $scope.agents = data.value;
-            });
+    //userFactory.$getAll()
+    //        .then(function (data) {
+    //            $scope.users = data.value;
+    //        });
 
-    $scope.deleteAgent = function (agent) {
-        if (popupService.showPopup('Really delete this agent?')) {
-            agent.$delete(function () {
-                //$window.location.href = '';
-            });
-        }
+    //$scope.deleteUser = function (user) {
+    //    if (popupService.showPopup('Really delete this user?')) {
+    //        user.$delete(function () {
+    //        });
+    //    }
+    //}
+
+    $scope.addUser = function () {
+        userFactory.save($scope.user);
     }
-
-    $scope.addAgent = function () {
-        agentFactory.$save(function () {
-            //$state.go('movies');
-        });
-    }
-
-    //}).controller('MovieEditController',function($scope,$state,$stateParams,Movie){
-
-    //$scope.updateAgent = function () {
-    //    $scope.agent.$update(function () {
-    //        //$state.go('movies');
-    //    });
-    //};
-
-    //$scope.loadAgent = function () {
-    //    //$scope.agent = agentFactory.get({ id: $stateParams.id });
-    //};
-
-    //$scope.loadAgent();
 });

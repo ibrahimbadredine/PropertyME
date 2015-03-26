@@ -1,0 +1,10 @@
+F:\GIT\PropertyME\People365.WCF\bin\People365.WCF.pdb
+F:\GIT\PropertyME\People365.WCF\bin\EntityFramework.dll
+F:\GIT\PropertyME\People365.WCF\bin\EntityFramework.SqlServer.dll
+F:\GIT\PropertyME\People365.WCF\bin\EntityFramework.xml
+F:\GIT\PropertyME\People365.WCF\bin\EntityFramework.SqlServer.xml
+F:\GIT\PropertyME\People365.WCF\obj\Release\People365.WCF.csprojResolveAssemblyReference.cache
+F:\GIT\PropertyME\People365.WCF\obj\Release\People365.WCF.pdb
+F:\GIT\PropertyME\People365.WCF\bin\People365.WCF.dll.config
+F:\GIT\PropertyME\People365.WCF\bin\People365.WCF.dll
+F:\GIT\PropertyME\People365.WCF\obj\Release\People365.WCF.dll

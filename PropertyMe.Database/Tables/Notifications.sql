@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Notifications]
 (
-	[ID] BIGINT NOT NULL PRIMARY KEY, 
+	[ID] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
     [Description] NVARCHAR(200) NOT NULL
 )

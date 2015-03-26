@@ -14,12 +14,6 @@ namespace Property365.Client
     
     public partial class User
     {
-        public User()
-        {
-            this.Agencies = new HashSet<Agency>();
-            this.Agents = new HashSet<Agent>();
-        }
-    
         public long ID { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
@@ -29,9 +23,5 @@ namespace Property365.Client
         public Nullable<long> PictureID { get; set; }
         public int RoleID { get; set; }
         public bool isActive { get; set; }
-    
-        public virtual ICollection<Agency> Agencies { get; set; }
-        public virtual ICollection<Agent> Agents { get; set; }
-        public virtual Role Role { get; set; }
     }
 }

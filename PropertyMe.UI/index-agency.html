@@ -189,103 +189,89 @@
 
     <!-- Content -->
 
-    <div id="wrapper" ng-controller="agentController">
-        <h4>AGENTS</h4>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-            <div class="table-overflow">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table">
-                        <tr ng-repeat="ag in agents">
-                            <td><span class="userName">{{ag.User.Name}}</span></td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-pencil"></span> Edit</a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a class="btn btn-xs btn-green dropdown-toggle" data-toggle="dropdown"><span class="fa fa-remove"></span> Delete</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading"><span class="newAgent">New</span><span class="editAgent">Edit</span> Agent</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Name</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="text" placeholder="Name" ng-model="agent.User.Name">
+    <div id="wrapper" ng-controller="userController" class="full">
+        <div id="mapView" class="min"><div class="mapPlaceholder"><span class="fa fa-spin fa-spinner"></span> Loading map...</div></div>
+        <div id="content" class="max">
+            <div class="lists">
+                <h4>Lists</h4>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        <div class="list-group">
+                            <a class="list-group-item" ng-repeat="usr in users">
+                                <span>{{usr.Name}}</span> <span class="badge badge-green">240</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><span class="newUser">New</span><span class="editUser">Edit</span> User</div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="text" placeholder="Name" ng-model="user.Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="password" placeholder="Password" ng-model="user.Password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Mobile</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="tel" placeholder="Mobile" ng-model="user.Tel">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="email" placeholder="Email" ng-model="user.Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Role</label>
+                                        <div class="col-sm-10">
+                                            <div class="btn-group">
+                                                <div class="clearfix"></div>
+                                                <a href="#" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                                    <span class="dropdown-label">Admin</span>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-select">
+                                                    <li class="active"><input type="radio" checked="checked"><a href="#" ng-click="user.PropertyRoleID =1">Admin</a></li>
+                                                    <li><input type="radio"><a href="#" ng-click="user.PropertyRoleID =2">Agency</a></li>
+                                                    <li><input type="radio"><a href="#" ng-click="user.PropertyRoleID =3">Agent</a></li>
+                                                    <li><input type="radio"><a href="#" ng-click="user.PropertyRoleID =4">User</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">About me</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" rows="3" ng-model="user.Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Image upload</label>
+                                        <div class="col-sm-10">
+                                            <input type="file" class="file" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-o btn-default" data-browse-label="Browse Images">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <a href="#" class="btn btn-green btn-lg" ng-click="addUser()">Add User</a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="password" placeholder="Password" ng-model="agent.User.Password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Mobile</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="tel" placeholder="Mobile" ng-model="agent.User.Tel">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="email" placeholder="Email" ng-model="agent.User.Email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Role</label>
-                            <div class="col-sm-10">
-                                <div class="btn-group">
-                                    <div class="clearfix"></div>
-                                    <a href="#" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                                        <span class="dropdown-label">Admin</span>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-select">
-                                        <li class="active"><input type="radio" checked="checked"><a href="#" ng-click="agent.User.RoleID =1">Admin</a></li>
-                                        <li><input type="radio"><a href="#" ng-click="agent.User.RoleID =2">Agency</a></li>
-                                        <li><input type="radio"><a href="#" ng-click="agent.User.RoleID =3">Agent</a></li>
-                                        <li><input type="radio"><a href="#" ng-click="agent.User.RoleID =4">User</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">About me</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" rows="3" ng-model="agent.User.Description"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Image upload</label>
-                            <div class="col-sm-10">
-                                <input type="file" class="file" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-o btn-default" data-browse-label="Browse Images">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <a href="#" class="btn btn-green btn-lg" ng-click="addAgent()">Add Agent</a>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="clearfix"></div>
-    </div>
+  </div>
 
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>

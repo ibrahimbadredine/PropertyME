@@ -25,6 +25,6 @@ namespace People365.WCF
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<PropertyUser> PropertyUsers { get; set; }
     }
 }

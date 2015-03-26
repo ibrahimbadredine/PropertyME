@@ -18,39 +18,44 @@ namespace People365.WCF
         //     add [WebGet(ResponseFormat=WebMessageFormat.Xml)],
         //     and include the following line in the operation body:
         //         WebOperationContext.Current.OutgoingResponse.ContentType = "text/xml";
-        [OperationContract]
-        public void DoWork()
-        {
-            // Add your operation implementation here
-            return;
-        }
 
         [OperationContract]
         [WebInvoke(Method = "GET",
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
-        UriTemplate = "/GetUsers")]
-        List<User> GetUsers()
+        UriTemplate = "/Users/")]
+        List<PropertyUser> GetUsers()
         {
-            return new Property365Entities().Users.ToList();
+            try
+            {
+                return new Property365Entities().PropertyUsers.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json,
            ResponseFormat = WebMessageFormat.Json,
-           UriTemplate = "/GetUser/{userId}")]
-        User GetUser(string userID)
+           UriTemplate = "/Users/{userId}")]
+        PropertyUser GetUser(string userID)
         {
-            return new Property365Entities().Users.FirstOrDefault(p => p.ID == long.Parse(userID));
+            return new Property365Entities().PropertyUsers.FirstOrDefault(p => p.ID == long.Parse(userID));
         }
 
         [WebInvoke(Method = "POST",
        RequestFormat = WebMessageFormat.Json,
        ResponseFormat = WebMessageFormat.Json,
-       UriTemplate = "/AddUser")]
-        bool AddUser(User newUser)
+       UriTemplate = "/Users")]
+        bool AddUser(PropertyUser newUser)
         {
-            new Property365Entities().Users.Add(newUser);
+            using (Property365Entities context = new Property365Entities())
+            {
+                context.PropertyUsers.Add(newUser);
+                context.SaveChanges();
+            }
             return true;
         }
 
@@ -59,8 +64,8 @@ namespace People365.WCF
         [WebInvoke(Method = "PUT",
            RequestFormat = WebMessageFormat.Json,
            ResponseFormat = WebMessageFormat.Json,
-           UriTemplate = "/UpdateUser")]
-        bool UpdateUser(User contact)
+           UriTemplate = "/Users/{userId}")]
+        bool UpdateUser(PropertyUser contact, string userID)
         {
             //new Property365Entities().Users.ToList();
             return true;
@@ -70,7 +75,7 @@ namespace People365.WCF
         [WebInvoke(Method = "DELETE",
            RequestFormat = WebMessageFormat.Json,
            ResponseFormat = WebMessageFormat.Json,
-           UriTemplate = "/DeleteUser/{userId}")]
+           UriTemplate = "/Users/{userId}")]
         bool DeleteUser(string userID)
         {
             //return new Property365Entities().Users.ToList();
