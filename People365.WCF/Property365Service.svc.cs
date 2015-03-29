@@ -42,7 +42,8 @@ namespace People365.WCF
            UriTemplate = "/Users/{userId}")]
         PropertyUser GetUser(string userID)
         {
-            return new Property365Entities().PropertyUsers.FirstOrDefault(p => p.ID == long.Parse(userID));
+            long uID = long.Parse(userID);
+            return new Property365Entities().PropertyUsers.FirstOrDefault(p => p.ID == uID);
         }
 
         [WebInvoke(Method = "POST",
