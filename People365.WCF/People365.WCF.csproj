@@ -78,6 +78,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Picture.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
     <Compile Include="Property365.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

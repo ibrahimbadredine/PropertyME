@@ -20,8 +20,9 @@ namespace People365.WCF
         public string Tel { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
-        public Nullable<long> PictureID { get; set; }
         public int PropertyRoleID { get; set; }
         public bool isActive { get; set; }
+    
+        public virtual Picture Picture { get; set; }
     }
 }

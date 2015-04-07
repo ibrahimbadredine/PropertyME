@@ -13,11 +13,7 @@ namespace People365.WCF
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class Property365Service
     {
-        // To use HTTP GET, add [WebGet] attribute. (Default ResponseFormat is WebMessageFormat.Json)
-        // To create an operation that returns XML,
-        //     add [WebGet(ResponseFormat=WebMessageFormat.Xml)],
-        //     and include the following line in the operation body:
-        //         WebOperationContext.Current.OutgoingResponse.ContentType = "text/xml";
+        #region User
 
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -28,7 +24,8 @@ namespace People365.WCF
         {
             try
             {
-                return new Property365Entities().PropertyUsers.ToList();
+                var users = new Property365Entities().PropertyUsers.ToList();
+                return users;
             }
             catch (Exception ex)
             {
@@ -66,9 +63,15 @@ namespace People365.WCF
            RequestFormat = WebMessageFormat.Json,
            ResponseFormat = WebMessageFormat.Json,
            UriTemplate = "/Users/{userId}")]
-        bool UpdateUser(PropertyUser contact, string userID)
+        bool UpdateUser(PropertyUser user, string userID)
         {
-            //new Property365Entities().Users.ToList();
+            using (Property365Entities db = new Property365Entities())
+            {
+                db.PropertyUsers.Attach(user);
+                var entry = db.Entry(user);
+                entry.State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
             return true;
         }
 
@@ -79,10 +82,85 @@ namespace People365.WCF
            UriTemplate = "/Users/{userId}")]
         bool DeleteUser(string userID)
         {
-            //return new Property365Entities().Users.ToList();
+            long uID = long.Parse(userID);
+            PropertyUser userToDelete = new PropertyUser() { ID = uID };
+
+            using (Property365Entities db = new Property365Entities())
+            {
+                db.PropertyUsers.Attach(userToDelete);
+                db.PropertyUsers.Remove(userToDelete);
+                db.SaveChanges();
+            }
             return true;
         }
 
-        // Add more operations here and mark them with [OperationContract]
+        #endregion
+
+        #region Picture
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "/Pictures/")]
+        List<Picture> GetPictures()
+        {
+            try
+            {
+                return new Property365Entities().Pictures.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "/Pictures/{Id}")]
+        Picture GetPicture(string ID)
+        {
+            long uID = long.Parse(ID);
+            return new Property365Entities().Pictures.FirstOrDefault(p => p.ID == uID);
+        }
+
+        [WebInvoke(Method = "POST",
+       RequestFormat = WebMessageFormat.Json,
+       ResponseFormat = WebMessageFormat.Json,
+       UriTemplate = "/Pictures")]
+        bool AddPicture(object newPicture)
+        {
+            using (Property365Entities context = new Property365Entities())
+            {
+                //context.Pictures.Add(newPicture);
+                //context.SaveChanges();
+            }
+            return true;
+        }
+
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "/Pictures/{Id}")]
+        bool UpdatePicture(object contact, string ID)
+        {
+            //new Property365Entities().Pictures.ToList();
+            return true;
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "/Pictures/{Id}")]
+        bool DeletePicture(string ID)
+        {
+            //return new Property365Entities().Pictures.ToList();
+            return true;
+        }
+        #endregion
+
     }
 }

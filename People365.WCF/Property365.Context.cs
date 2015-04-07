@@ -12,19 +12,21 @@ namespace People365.WCF
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class Property365Entities : DbContext
     {
         public Property365Entities()
             : base("name=Property365Entities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
+        public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<PropertyUser> PropertyUsers { get; set; }
     }
 }

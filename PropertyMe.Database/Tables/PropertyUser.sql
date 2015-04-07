@@ -9,5 +9,7 @@
 	[PictureID] bigint NULL,
     [PropertyRoleID] INT NOT NULL,
 	[isActive] BIT NOT NULL DEFAULT 0
-CONSTRAINT [FK_PropertyUser_PropertyRole] FOREIGN KEY ([PropertyRoleID]) REFERENCES [PropertyRole]([ID]),
+	CONSTRAINT [FK_PropertyUser_PropertyRole] FOREIGN KEY ([PropertyRoleID]) REFERENCES [PropertyRole]([ID]), 
+    CONSTRAINT [FK_PropertyUser_Picture] FOREIGN KEY ([PictureID]) REFERENCES [Picture]([ID]),
+
 )
