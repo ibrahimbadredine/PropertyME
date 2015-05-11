@@ -42,17 +42,19 @@ angular.module('prop365App.controllers', []).controller('userController', functi
     }
 
     $scope.updateUser = function () {
-        var f = document.getElementById('photo1').files[0];
-        if (f)
-            r.readAsDataURL(f);
 
-        $scope.user.Picture.Image = f;
+        if (image) {
+            $scope.user.Picture = {};
+            $scope.uId.Picture.ID = 12;
+            $scope.uId.Picture.Image = image;
+        }
 
         userFactory.update($scope.user);
         $scope.user = null;
     }
 
-    $("#photo1").fileinput({
+    var imageInput = $("#photo1");
+    imageInput.fileinput({
         //uploadUrl: 'http://localhost:62640/Property365Service/Pictures/',
         allowedFileExtensions: ['jpg', 'png', 'gif'],
         overwriteInitial: false,
@@ -62,56 +64,14 @@ angular.module('prop365App.controllers', []).controller('userController', functi
         allowedFileTypes: ['image']
     });
 
-    r = new FileReader();
-    r.onloadend = function () {
-        var img = new Image();
-        img.src = r.result;
-    }
+    var image;
+    imageInput.change(function (event) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            image = event.target.result;
+        };
+        //reader.readAsDataURL(image);
+        //});
+    });
 
 });
-
-
-/**
- * Converts an image to
- * a base64 string.
- * 
- * If you want to use the 
- * outputFormat or quality param
- * I strongly recommend you read the docs 
- * @ mozilla for `canvas.toDataURL()`
- * 
- * @param 	{String} 	url
- * @param 	{Function}	callback
- * @param 	{String}	[outputFormat='image/png']
- * @param 	{Float}   	[quality=0.0 to 1.0]
- * @url 	https://gist.github.com/HaNdTriX/7704632/
- * @docs 	https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement#Methods
- * @author 	HaNdTriX
- * @example
- * 			imgToDataURL('http://goo.gl/AOxHAL', function(err, base64Img){
- * 				console.log('IMAGE:',base64Img);
- * 			})
- */
-function imgToDataURL(url, callback, outputFormat, quality) {
-    var canvas = document.createElement('CANVAS'),
-		ctx = canvas.getContext('2d'),
-		img = new Image();
-    img.crossOrigin = 'Anonymous';
-    img.onload = function () {
-        var dataURL;
-        canvas.height = img.height;
-        canvas.width = img.width;
-        try {
-            ctx.drawImage(img, 0, 0);
-            dataURL = canvas.toDataURL(outputFormat, quality);
-            callback(null, dataURL);
-        } catch (e) {
-            callback(e, null);
-        }
-        canvas = img = null;
-    };
-    img.onerror = function () {
-        callback(new Error('Could not load image'), null);
-    };
-    img.src = url;
-}
