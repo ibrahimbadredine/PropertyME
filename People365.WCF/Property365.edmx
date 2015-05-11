@@ -9,8 +9,15 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" StoreGeneratedPattern="Identity" Type="bigint" />
-          <Property Name="Image" Nullable="false" Type="image" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="PropertyUser">
           <Key>
@@ -27,8 +34,8 @@
           <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_PropertyUser_Picture">
-          <End Type="Self.Picture" Multiplicity="0..1" Role="Picture" />
-          <End Type="Self.PropertyUser" Multiplicity="*" Role="PropertyUser" />
+          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Picture">
               <PropertyRef Name="ID" />
@@ -38,12 +45,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PropertyUser_PropertyRole">
+          <End Role="PropertyRole" Type="Self.PropertyRole" Multiplicity="1" />
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyUser">
+              <PropertyRef Name="PropertyRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Property365ModelStoreContainer">
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyRole" EntityType="Self.PropertyRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyUser" EntityType="Self.PropertyUser" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_PropertyUser_Picture" Association="Self.FK_PropertyUser_Picture">
-            <End EntitySet="Picture" Role="Picture" />
-            <End EntitySet="PropertyUser" Role="PropertyUser" />
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyUser_PropertyRole" Association="Self.FK_PropertyUser_PropertyRole">
+            <End Role="PropertyRole" EntitySet="PropertyRole" />
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -56,6 +80,11 @@
           <AssociationSet Name="FK_PropertyUser_Picture" Association="Property365Model.FK_PropertyUser_Picture">
             <End EntitySet="Pictures" Role="Picture" />
             <End EntitySet="PropertyUsers" Role="PropertyUser" />
+          </AssociationSet>
+          <EntitySet Name="PropertyRoles" EntityType="Property365Model.PropertyRole" />
+          <AssociationSet Name="FK_PropertyUser_PropertyRole" Association="Property365Model.FK_PropertyUser_PropertyRole">
+            <End Role="PropertyRole" EntitySet="PropertyRoles" />
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Picture">
@@ -79,10 +108,31 @@
           <Property Name="PropertyRoleID" Type="Int32" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Picture" Relationship="Property365Model.FK_PropertyUser_Picture" FromRole="PropertyUser" ToRole="Picture" />
+          <NavigationProperty Name="PropertyRole" Relationship="Property365Model.FK_PropertyUser_PropertyRole" FromRole="PropertyUser" ToRole="PropertyRole" />
         </EntityType>
         <Association Name="FK_PropertyUser_Picture">
           <End Type="Property365Model.Picture" Multiplicity="0..1" Role="Picture" />
           <End Type="Property365Model.PropertyUser" Multiplicity="*" Role="PropertyUser" />
+        </Association>
+        <EntityType Name="PropertyRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PropertyUsers" Relationship="Property365Model.FK_PropertyUser_PropertyRole" FromRole="PropertyRole" ToRole="PropertyUser" />
+        </EntityType>
+        <Association Name="FK_PropertyUser_PropertyRole">
+          <End Type="Property365Model.PropertyRole" Role="PropertyRole" Multiplicity="1" />
+          <End Type="Property365Model.PropertyUser" Role="PropertyUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyUser">
+              <PropertyRef Name="PropertyRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -121,6 +171,14 @@
             </EndProperty>
             <Condition ColumnName="PictureID" IsNull="false" />
           </AssociationSetMapping>
+          <EntitySetMapping Name="PropertyRoles">
+            <EntityTypeMapping TypeName="Property365Model.PropertyRole">
+              <MappingFragment StoreEntitySet="PropertyRole">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

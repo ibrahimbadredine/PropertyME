@@ -24,7 +24,7 @@ namespace People365.WCF
         {
             try
             {
-                var users = new Property365Entities().PropertyUsers.ToList();
+                var users = new Property365Entities().PropertyUsers.Include("PropertyRole").Include("Picture").ToList();
                 return users;
             }
             catch (Exception ex)
@@ -40,7 +40,7 @@ namespace People365.WCF
         PropertyUser GetUser(string userID)
         {
             long uID = long.Parse(userID);
-            return new Property365Entities().PropertyUsers.FirstOrDefault(p => p.ID == uID);
+            return new Property365Entities().PropertyUsers.Include("PropertyRole").Include("Picture").FirstOrDefault(p => p.ID == uID);
         }
 
         [WebInvoke(Method = "POST",

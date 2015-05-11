@@ -11,17 +11,20 @@ namespace People365.WCF
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
     public partial class Picture
     {
         public Picture()
         {
             this.PropertyUsers = new HashSet<PropertyUser>();
         }
-    
+
         public long ID { get; set; }
         public byte[] Image { get; set; }
-    
+
+
+        [IgnoreDataMember]
         public virtual ICollection<PropertyUser> PropertyUsers { get; set; }
     }
 }

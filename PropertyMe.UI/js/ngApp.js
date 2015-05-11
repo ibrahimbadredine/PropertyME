@@ -42,11 +42,12 @@ angular.module('prop365App.controllers', []).controller('userController', functi
     }
 
     $scope.updateUser = function () {
-        var f = document.getElementById('photo1').files[0],
-            r = new FileReader();
-        r.onloadend = function (e) {
-            var data = e.target.result;
-        }
+        var f = document.getElementById('photo1').files[0];
+        if (f)
+            r.readAsDataURL(f);
+
+        $scope.user.Picture.Image = f;
+
         userFactory.update($scope.user);
         $scope.user = null;
     }
@@ -60,6 +61,13 @@ angular.module('prop365App.controllers', []).controller('userController', functi
         uploadAsync: false,
         allowedFileTypes: ['image']
     });
+
+    r = new FileReader();
+    r.onloadend = function () {
+        var img = new Image();
+        img.src = r.result;
+    }
+
 });
 
 

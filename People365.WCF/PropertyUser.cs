@@ -24,5 +24,6 @@ namespace People365.WCF
         public bool isActive { get; set; }
     
         public virtual Picture Picture { get; set; }
+        public virtual PropertyRole PropertyRole { get; set; }
     }
 }
