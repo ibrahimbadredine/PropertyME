@@ -43,11 +43,12 @@ angular.module('prop365App.controllers', []).controller('userController', functi
 
     $scope.updateUser = function () {
 
-        if (image) {
-            $scope.user.Picture = {};
-            $scope.uId.Picture.ID = 12;
-            $scope.uId.Picture.Image = image;
-        }
+        //    if (image) {
+            //        $scope.user.Picture = {};
+            //        $scope.user.Picture.ID = 12;
+            //        $scope.user.Picture.Image = JSON.stringify(image);
+        //}
+
 
         userFactory.update($scope.user);
         $scope.user = null;
@@ -55,7 +56,7 @@ angular.module('prop365App.controllers', []).controller('userController', functi
 
     var imageInput = $("#photo1");
     imageInput.fileinput({
-        //uploadUrl: 'http://localhost:62640/Property365Service/Pictures/',
+        uploadUrl: 'http://localhost:62640/Property365Service/Pictures/',
         allowedFileExtensions: ['jpg', 'png', 'gif'],
         overwriteInitial: false,
         maxFileSize: 1000,
@@ -65,13 +66,25 @@ angular.module('prop365App.controllers', []).controller('userController', functi
     });
 
     var image;
-    imageInput.change(function (event) {
-        var reader = new FileReader();
-        reader.onload = function (event) {
-            image = event.target.result;
-        };
-        //reader.readAsDataURL(image);
-        //});
-    });
+    //imageInput.change(function (event) {
+    //    var reader = new FileReader();
+    //    reader.onload = function (event) {
+    //        image = event.target.result;
+    //    };
+    //    reader.readAsDataURL(image);
+    //});
 
+    //imageInput.change(function(event) {
+    //    $.each(event.target.files, function (index, file) {
+    //        var reader = new FileReader();
+    //        reader.onload = function (event) {
+    //            object = { 
+    //        };
+    //            object.filename = file.name;
+    //            image = event.target.result;
+    //            //files.push(object);
+    //        };
+    //        reader.readAsDataURL(file);
+    //    });
+    //});
 });

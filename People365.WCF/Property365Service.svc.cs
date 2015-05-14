@@ -115,8 +115,10 @@ namespace People365.WCF
         }
 
         [OperationContract]
-        [WebGet(RequestFormat = WebMessageFormat.Json,
-           ResponseFormat = WebMessageFormat.Json,
+        [WebGet(
+            BodyStyle = WebMessageBodyStyle.Bare,
+            // RequestFormat = WebMessageFormat.Json,
+            //ResponseFormat = WebMessageFormat.Json,
            UriTemplate = "/Pictures/{Id}")]
         Picture GetPicture(string ID)
         {
@@ -124,11 +126,12 @@ namespace People365.WCF
             return new Property365Entities().Pictures.FirstOrDefault(p => p.ID == uID);
         }
 
-        [WebInvoke(Method = "POST",
-       RequestFormat = WebMessageFormat.Json,
-       ResponseFormat = WebMessageFormat.Json,
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Bare,
+            Method = "POST",
+            //RequestFormat = WebMessageFormat.Json,
+            //ResponseFormat = WebMessageFormat.Json,
        UriTemplate = "/Pictures")]
-        bool AddPicture(object newPicture)
+        bool AddPicture(System.IO.Stream newPicture)
         {
             using (Property365Entities context = new Property365Entities())
             {
@@ -140,26 +143,17 @@ namespace People365.WCF
 
 
         [OperationContract]
-        [WebInvoke(Method = "PUT",
-           RequestFormat = WebMessageFormat.Json,
-           ResponseFormat = WebMessageFormat.Json,
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Bare,
+            Method = "PUT",
+            //RequestFormat = WebMessageFormat.Json,
+            //ResponseFormat = WebMessageFormat.Json,
            UriTemplate = "/Pictures/{Id}")]
-        bool UpdatePicture(object contact, string ID)
+        bool UpdatePicture(System.IO.Stream contact, string ID)
         {
             //new Property365Entities().Pictures.ToList();
             return true;
         }
-
-        [OperationContract]
-        [WebInvoke(Method = "DELETE",
-           RequestFormat = WebMessageFormat.Json,
-           ResponseFormat = WebMessageFormat.Json,
-           UriTemplate = "/Pictures/{Id}")]
-        bool DeletePicture(string ID)
-        {
-            //return new Property365Entities().Pictures.ToList();
-            return true;
-        }
+      
         #endregion
 
     }
