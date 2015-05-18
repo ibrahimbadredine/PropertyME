@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PropertyMe.Database", "PropertyMe.Database\PropertyMe.Database.sqlproj", "{585D7667-2019-43BB-99DA-357F19ECA635}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PropertyMe.UI", "http://localhost:11337", "{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PropertyMe.UI(1)", "http://localhost:11337", "{56087EEA-8ACF-4CF0-9C48-467EFB8A7360}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "Cons
 		{DDA98204-D8BA-4F31-AD4E-EA0BCEBB3BDE} = {DDA98204-D8BA-4F31-AD4E-EA0BCEBB3BDE}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Property365.WebApi", "Property365.WebApi\Property365.WebApi.csproj", "{BE17A05B-2255-4DC8-9055-A0DD8F6B6E92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,10 @@ Global
 		{E2E6E33A-980D-4FBA-877A-6343970E1F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2E6E33A-980D-4FBA-877A-6343970E1F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2E6E33A-980D-4FBA-877A-6343970E1F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE17A05B-2255-4DC8-9055-A0DD8F6B6E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE17A05B-2255-4DC8-9055-A0DD8F6B6E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE17A05B-2255-4DC8-9055-A0DD8F6B6E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE17A05B-2255-4DC8-9055-A0DD8F6B6E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
