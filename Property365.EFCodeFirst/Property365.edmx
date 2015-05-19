@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Property365Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MyProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PropertyCategoryID" Type="int" Nullable="false" />
+          <Property Name="Area" Type="int" Nullable="false" />
+          <Property Name="Bedroom" Type="int" Nullable="false" />
+          <Property Name="Bathroom" Type="int" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="PropertyUserID" Type="bigint" Nullable="false" />
+          <Property Name="Long" Type="decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="Lat" Type="decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="IsSale" Type="bit" Nullable="false" />
+          <Property Name="IsRent" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PictureID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="PropertyPictures">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyID" Type="bigint" Nullable="false" />
+          <Property Name="PictureID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="PictureID" Type="bigint" />
+          <Property Name="PropertyRoleID" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Property_PropertyCategory">
+          <End Role="PropertyCategory" Type="Self.PropertyCategory" Multiplicity="1" />
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyUser">
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="1" />
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyCategory_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="PropertyCategory" Type="Self.PropertyCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyCategory">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="PropertyPictures" Type="Self.PropertyPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPictures">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Property">
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="1" />
+          <End Role="PropertyPictures" Type="Self.PropertyPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPictures">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyUser_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyUser">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyUser_PropertyRole">
+          <End Role="PropertyRole" Type="Self.PropertyRole" Multiplicity="1" />
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyUser">
+              <PropertyRef Name="PropertyRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Property365ModelStoreContainer">
+          <EntitySet Name="MyProperty" EntityType="Self.MyProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyCategory" EntityType="Self.PropertyCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyPictures" EntityType="Self.PropertyPictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyRole" EntityType="Self.PropertyRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyUser" EntityType="Self.PropertyUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Property_PropertyCategory" Association="Self.FK_Property_PropertyCategory">
+            <End Role="PropertyCategory" EntitySet="PropertyCategory" />
+            <End Role="MyProperty" EntitySet="MyProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyUser" Association="Self.FK_Property_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+            <End Role="MyProperty" EntitySet="MyProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyCategory_Picture" Association="Self.FK_PropertyCategory_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="PropertyCategory" EntitySet="PropertyCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Picture" Association="Self.FK_PropertyPictures_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="PropertyPictures" EntitySet="PropertyPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Property" Association="Self.FK_PropertyPictures_Property">
+            <End Role="MyProperty" EntitySet="MyProperty" />
+            <End Role="PropertyPictures" EntitySet="PropertyPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyUser_Picture" Association="Self.FK_PropertyUser_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyUser_PropertyRole" Association="Self.FK_PropertyUser_PropertyRole">
+            <End Role="PropertyRole" EntitySet="PropertyRole" />
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Property365Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MyProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PropertyCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
+          <Property Name="Bedroom" Type="Int32" Nullable="false" />
+          <Property Name="Bathroom" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyUserID" Type="Int64" Nullable="false" />
+          <Property Name="Long" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="Lat" Type="Decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="IsSale" Type="Boolean" Nullable="false" />
+          <Property Name="IsRent" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PropertyCategory" Relationship="Self.FK_Property_PropertyCategory" FromRole="MyProperty" ToRole="PropertyCategory" />
+          <NavigationProperty Name="PropertyUser" Relationship="Self.FK_Property_PropertyUser" FromRole="MyProperty" ToRole="PropertyUser" />
+          <NavigationProperty Name="PropertyPictures" Relationship="Self.FK_PropertyPictures_Property" FromRole="MyProperty" ToRole="PropertyPictures" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="PropertyCategories" Relationship="Self.FK_PropertyCategory_Picture" FromRole="Picture" ToRole="PropertyCategory" />
+          <NavigationProperty Name="PropertyPictures" Relationship="Self.FK_PropertyPictures_Picture" FromRole="Picture" ToRole="PropertyPictures" />
+          <NavigationProperty Name="PropertyUsers" Relationship="Self.FK_PropertyUser_Picture" FromRole="Picture" ToRole="PropertyUser" />
+        </EntityType>
+        <EntityType Name="PropertyCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PictureID" Type="Int64" />
+          <NavigationProperty Name="MyProperties" Relationship="Self.FK_Property_PropertyCategory" FromRole="PropertyCategory" ToRole="MyProperty" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_PropertyCategory_Picture" FromRole="PropertyCategory" ToRole="Picture" />
+        </EntityType>
+        <EntityType Name="PropertyPicture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyID" Type="Int64" Nullable="false" />
+          <Property Name="PictureID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="MyProperty" Relationship="Self.FK_PropertyPictures_Property" FromRole="PropertyPictures" ToRole="MyProperty" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_PropertyPictures_Picture" FromRole="PropertyPictures" ToRole="Picture" />
+        </EntityType>
+        <EntityType Name="PropertyRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyUsers" Relationship="Self.FK_PropertyUser_PropertyRole" FromRole="PropertyRole" ToRole="PropertyUser" />
+        </EntityType>
+        <EntityType Name="PropertyUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PictureID" Type="Int64" />
+          <Property Name="PropertyRoleID" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MyProperties" Relationship="Self.FK_Property_PropertyUser" FromRole="PropertyUser" ToRole="MyProperty" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_PropertyUser_Picture" FromRole="PropertyUser" ToRole="Picture" />
+          <NavigationProperty Name="PropertyRole" Relationship="Self.FK_PropertyUser_PropertyRole" FromRole="PropertyUser" ToRole="PropertyRole" />
+        </EntityType>
+        <Association Name="FK_Property_PropertyCategory">
+          <End Role="PropertyCategory" Type="Self.PropertyCategory" Multiplicity="1" />
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyUser">
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="1" />
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Property">
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="1" />
+          <End Role="PropertyPictures" Type="Self.PropertyPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPictures">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyCategory_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="PropertyCategory" Type="Self.PropertyCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyCategory">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="PropertyPictures" Type="Self.PropertyPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPictures">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyUser_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyUser">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyUser_PropertyRole">
+          <End Role="PropertyRole" Type="Self.PropertyRole" Multiplicity="1" />
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyUser">
+              <PropertyRef Name="PropertyRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Property365Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MyProperties" EntityType="Self.MyProperty" />
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
+          <EntitySet Name="PropertyCategories" EntityType="Self.PropertyCategory" />
+          <EntitySet Name="PropertyPictures" EntityType="Self.PropertyPicture" />
+          <EntitySet Name="PropertyRoles" EntityType="Self.PropertyRole" />
+          <EntitySet Name="PropertyUsers" EntityType="Self.PropertyUser" />
+          <AssociationSet Name="FK_Property_PropertyCategory" Association="Self.FK_Property_PropertyCategory">
+            <End Role="PropertyCategory" EntitySet="PropertyCategories" />
+            <End Role="MyProperty" EntitySet="MyProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyUser" Association="Self.FK_Property_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+            <End Role="MyProperty" EntitySet="MyProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Property" Association="Self.FK_PropertyPictures_Property">
+            <End Role="MyProperty" EntitySet="MyProperties" />
+            <End Role="PropertyPictures" EntitySet="PropertyPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyCategory_Picture" Association="Self.FK_PropertyCategory_Picture">
+            <End Role="Picture" EntitySet="Pictures" />
+            <End Role="PropertyCategory" EntitySet="PropertyCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Picture" Association="Self.FK_PropertyPictures_Picture">
+            <End Role="Picture" EntitySet="Pictures" />
+            <End Role="PropertyPictures" EntitySet="PropertyPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyUser_Picture" Association="Self.FK_PropertyUser_Picture">
+            <End Role="Picture" EntitySet="Pictures" />
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyUser_PropertyRole" Association="Self.FK_PropertyUser_PropertyRole">
+            <End Role="PropertyRole" EntitySet="PropertyRoles" />
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Property365ModelStoreContainer" CdmEntityContainer="Property365Entities">
+          <EntitySetMapping Name="MyProperties">
+            <EntityTypeMapping TypeName="Property365Model.MyProperty">
+              <MappingFragment StoreEntitySet="MyProperty">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PropertyCategoryID" ColumnName="PropertyCategoryID" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PropertyUserID" ColumnName="PropertyUserID" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+                <ScalarProperty Name="IsRent" ColumnName="IsRent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="Property365Model.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyCategories">
+            <EntityTypeMapping TypeName="Property365Model.PropertyCategory">
+              <MappingFragment StoreEntitySet="PropertyCategory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyPictures">
+            <EntityTypeMapping TypeName="Property365Model.PropertyPicture">
+              <MappingFragment StoreEntitySet="PropertyPictures">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyRoles">
+            <EntityTypeMapping TypeName="Property365Model.PropertyRole">
+              <MappingFragment StoreEntitySet="PropertyRole">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyUsers">
+            <EntityTypeMapping TypeName="Property365Model.PropertyUser">
+              <MappingFragment StoreEntitySet="PropertyUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="PropertyRoleID" ColumnName="PropertyRoleID" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

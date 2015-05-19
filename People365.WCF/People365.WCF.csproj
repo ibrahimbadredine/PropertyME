@@ -96,10 +96,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Property365.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property365Service.svc.cs">
       <DependentUpon>Property365Service.svc</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyRole.cs">
       <DependentUpon>Property365.tt</DependentUpon>
     </Compile>
