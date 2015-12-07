@@ -13,6 +13,65 @@ namespace People365.WCF
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class Property365Service
     {
+        #region Property
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        RequestFormat = WebMessageFormat.Json,
+        ResponseFormat = WebMessageFormat.Json,
+        UriTemplate = "/Property/")]
+        List<PropertyModel> GetProperties()
+        {
+            var properties = new Property365Entities().MyProperties;
+
+            List<PropertyModel> lstProperties = new List<PropertyModel>();
+            foreach (var prop in properties)
+            {
+                PropertyModel propertyModel = new PropertyModel();
+
+                propertyModel.ID = prop.ID;
+                propertyModel.title = prop.Title;
+                if (prop.PropertyPictures != null && prop.PropertyPictures.Count > 0)
+                {
+                    propertyModel.img = prop.PropertyPictures.FirstOrDefault().Picture.ImageName;
+                    propertyModel.carousselPics = prop.PropertyPictures.Select(p => p.Picture.ImageName).ToArray();
+                }
+                propertyModel.description = prop.Description;
+                propertyModel.type = prop.IsSale ? "For Sale" : "For Rent";
+                propertyModel.price = prop.Price;
+                propertyModel.address = prop.Location;
+                propertyModel.bedrooms = prop.Bedroom;
+                propertyModel.bathrooms = prop.Bathroom;
+                propertyModel.area = prop.Area;
+                propertyModel.position = new PositionModel() { lng = prop.Long, lat = prop.Lat };
+
+                lstProperties.Add(propertyModel);
+            }
+            return lstProperties;
+        }
+
+        [WebInvoke(Method = "POST",
+      RequestFormat = WebMessageFormat.Json,
+      ResponseFormat = WebMessageFormat.Json,
+      UriTemplate = "/Property")]
+        bool AddProperty(PropertyModel newProperty)
+        {
+            MyProperty prop = new MyProperty();
+
+            prop.Title = newProperty.title;
+            prop.Price = newProperty.price;
+            prop.Description = newProperty.description;
+            prop.Long = newProperty.position.lng;
+
+
+            //using (Property365Entities context = new Property365Entities())
+            //{
+            //    context.MyProperties.Add(newProperty);
+            //    context.SaveChanges();
+            //}
+            return true;
+        }
+        #endregion
+
         #region User
 
         [OperationContract]
@@ -129,8 +188,8 @@ namespace People365.WCF
         [WebInvoke(BodyStyle = WebMessageBodyStyle.Bare,
             Method = "POST",
             //RequestFormat = WebMessageFormat.Json,
-            //ResponseFormat = WebMessageFormat.Json,
-       UriTemplate = "/Pictures")]
+            ResponseFormat = WebMessageFormat.Json,
+       UriTemplate = "/AddPicture")]
         bool AddPicture(System.IO.Stream newPicture)
         {
             using (Property365Entities context = new Property365Entities())
@@ -142,18 +201,18 @@ namespace People365.WCF
         }
 
 
-        [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Bare,
-            Method = "PUT",
-            //RequestFormat = WebMessageFormat.Json,
-            //ResponseFormat = WebMessageFormat.Json,
-           UriTemplate = "/Pictures/{Id}")]
-        bool UpdatePicture(System.IO.Stream contact, string ID)
-        {
-            //new Property365Entities().Pictures.ToList();
-            return true;
-        }
-      
+        //[OperationContract]
+        //[WebInvoke(BodyStyle = WebMessageBodyStyle.Bare,
+        //    Method = "PUT",
+        //    //RequestFormat = WebMessageFormat.Json,
+        //    //ResponseFormat = WebMessageFormat.Json,
+        //   UriTemplate = "/Pictures/{Id}")]
+        //bool UpdatePicture(System.IO.Stream contact, string ID)
+        //{
+        //    //new Property365Entities().Pictures.ToList();
+        //    return true;
+        //}
+
         #endregion
 
     }

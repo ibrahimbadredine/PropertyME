@@ -5,8 +5,8 @@ F:\GIT\PropertyME\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
 F:\GIT\PropertyME\ConsoleApplication1\obj\Release\ConsoleApplication1.exe
 F:\GIT\PropertyME\ConsoleApplication1\obj\Release\ConsoleApplication1.pdb
 F:\GIT\PropertyME\ConsoleApplication1\bin\Release\People365.WCF.dll
-F:\GIT\PropertyME\ConsoleApplication1\bin\Release\EntityFramework.dll
 F:\GIT\PropertyME\ConsoleApplication1\bin\Release\People365.WCF.pdb
+F:\GIT\PropertyME\ConsoleApplication1\bin\Release\EntityFramework.dll
 F:\GIT\PropertyME\ConsoleApplication1\bin\Release\EntityFramework.xml
 F:\GIT\PropertyME\ConsoleApplication1\bin\Release\EntityFramework.SqlServer.dll
 F:\GIT\PropertyME\ConsoleApplication1\bin\Release\EntityFramework.SqlServer.xml

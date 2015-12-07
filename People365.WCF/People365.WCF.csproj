@@ -41,12 +41,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -75,8 +75,24 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comment.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Favorite.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ModelClass.cs" />
+    <Compile Include="MyProperty.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Permission.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PermissionType.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
     </Compile>
     <Compile Include="Picture.cs">
       <DependentUpon>Property365.tt</DependentUpon>
@@ -100,10 +116,22 @@
     <Compile Include="Property365Service.svc.cs">
       <DependentUpon>Property365Service.svc</DependentUpon>
     </Compile>
+    <Compile Include="PropertyCategory.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyPicture.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
     <Compile Include="PropertyRole.cs">
       <DependentUpon>Property365.tt</DependentUpon>
     </Compile>
     <Compile Include="PropertyUser.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rating.cs">
+      <DependentUpon>Property365.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View.cs">
       <DependentUpon>Property365.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -111,7 +139,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
     <EntityDeploy Include="Property365.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Property365.Designer.cs</LastGenOutput>
@@ -129,6 +156,7 @@
       <DependentUpon>Property365.edmx</DependentUpon>
       <LastGenOutput>Property365.cs</LastGenOutput>
     </Content>
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

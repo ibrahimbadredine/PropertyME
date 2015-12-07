@@ -1,7 +1,0 @@
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.DataLayer\bin\Debug\PropertyMe.DataLayer.dll
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.DataLayer\bin\Debug\PropertyMe.DataLayer.pdb
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.DataLayer\bin\Debug\PropertyMe.Server.dll
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.DataLayer\bin\Debug\PropertyMe.Server.pdb
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.DataLayer\obj\Debug\PropertyMe.DataLayer.csprojResolveAssemblyReference.cache
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.DataLayer\obj\Debug\PropertyMe.DataLayer.dll
-F:\PropertyMe.Server\PropertyMe.Server\PropertyMe.DataLayer\obj\Debug\PropertyMe.DataLayer.pdb

@@ -4,13 +4,89 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Property365Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Property365Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="PropertyID" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Favorites">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="PropertyID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MyProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Long" Type="decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="Lat" Type="decimal" Precision="18" Scale="15" Nullable="false" />
+          <Property Name="Area" Type="int" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="75" />
+          <Property Name="PropertyCategoryID" Type="int" Nullable="false" />
+          <Property Name="Bedroom" Type="int" Nullable="false" />
+          <Property Name="Bathroom" Type="int" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PropertyUserID" Type="bigint" Nullable="false" />
+          <Property Name="IsSale" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyRoleID" Type="int" Nullable="false" />
+          <Property Name="PermissionTypeID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermissionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PictureID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="PropertyPictures">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyID" Type="bigint" Nullable="false" />
+          <Property Name="PictureID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="PropertyRole">
           <Key>
@@ -33,15 +109,151 @@
           <Property Name="PropertyRoleID" Type="int" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_PropertyUser_Picture">
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="PropertyID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Views">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="bigint" Nullable="false" />
+          <Property Name="PropertyID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Comments_MyProperty">
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_PropertyUser">
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorites_MyProperty">
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="1" />
+          <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Favorites">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorites_PropertyUser">
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="1" />
+          <End Role="Favorites" Type="Self.Favorites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Favorites">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_PermissionType">
+          <End Role="PermissionType" Type="Self.PermissionType" Multiplicity="1" />
+          <End Role="Permission" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="PermissionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_Role">
+          <End Role="PropertyRole" Type="Self.PropertyRole" Multiplicity="1" />
+          <End Role="Permission" Type="Self.Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="PropertyRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyCategory">
+          <End Role="PropertyCategory" Type="Self.PropertyCategory" Multiplicity="1" />
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyUser">
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="1" />
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyCategory_Picture">
           <End Role="Picture" Type="Self.Picture" Multiplicity="0..1" />
-          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="*" />
+          <End Role="PropertyCategory" Type="Self.PropertyCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Picture">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="PropertyUser">
+            <Dependent Role="PropertyCategory">
               <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="PropertyPictures" Type="Self.PropertyPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPictures">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Property">
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="1" />
+          <End Role="PropertyPictures" Type="Self.PropertyPictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPictures">
+              <PropertyRef Name="PropertyID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -57,17 +269,131 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Rating_MyProperty">
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rating_PropertyUser">
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="1" />
+          <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Views_MyProperty">
+          <End Role="MyProperty" Type="Self.MyProperty" Multiplicity="1" />
+          <End Role="Views" Type="Self.Views" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Views">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Views_PropertyUser">
+          <End Role="PropertyUser" Type="Self.PropertyUser" Multiplicity="1" />
+          <End Role="Views" Type="Self.Views" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Views">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Property365ModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favorites" EntityType="Self.Favorites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyProperty" EntityType="Self.MyProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermissionType" EntityType="Self.PermissionType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyCategory" EntityType="Self.PropertyCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyPictures" EntityType="Self.PropertyPictures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyRole" EntityType="Self.PropertyRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyUser" EntityType="Self.PropertyUser" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_PropertyUser_Picture" Association="Self.FK_PropertyUser_Picture">
-            <End Role="Picture" EntitySet="Picture" />
+          <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Views" EntityType="Self.Views" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Comments_MyProperty" Association="Self.FK_Comments_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperty" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_PropertyUser" Association="Self.FK_Comments_PropertyUser">
             <End Role="PropertyUser" EntitySet="PropertyUser" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorites_MyProperty" Association="Self.FK_Favorites_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperty" />
+            <End Role="Favorites" EntitySet="Favorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorites_PropertyUser" Association="Self.FK_Favorites_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+            <End Role="Favorites" EntitySet="Favorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_PermissionType" Association="Self.FK_Permission_PermissionType">
+            <End Role="PermissionType" EntitySet="PermissionType" />
+            <End Role="Permission" EntitySet="Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Role" Association="Self.FK_Permission_Role">
+            <End Role="PropertyRole" EntitySet="PropertyRole" />
+            <End Role="Permission" EntitySet="Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyCategory" Association="Self.FK_Property_PropertyCategory">
+            <End Role="PropertyCategory" EntitySet="PropertyCategory" />
+            <End Role="MyProperty" EntitySet="MyProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyUser" Association="Self.FK_Property_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+            <End Role="MyProperty" EntitySet="MyProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyCategory_Picture" Association="Self.FK_PropertyCategory_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="PropertyCategory" EntitySet="PropertyCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Picture" Association="Self.FK_PropertyPictures_Picture">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="PropertyPictures" EntitySet="PropertyPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Property" Association="Self.FK_PropertyPictures_Property">
+            <End Role="MyProperty" EntitySet="MyProperty" />
+            <End Role="PropertyPictures" EntitySet="PropertyPictures" />
           </AssociationSet>
           <AssociationSet Name="FK_PropertyUser_PropertyRole" Association="Self.FK_PropertyUser_PropertyRole">
             <End Role="PropertyRole" EntitySet="PropertyRole" />
             <End Role="PropertyUser" EntitySet="PropertyUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_MyProperty" Association="Self.FK_Rating_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperty" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_PropertyUser" Association="Self.FK_Rating_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+            <End Role="Rating" EntitySet="Rating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Views_MyProperty" Association="Self.FK_Views_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperty" />
+            <End Role="Views" EntitySet="Views" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Views_PropertyUser" Association="Self.FK_Views_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUser" />
+            <End Role="Views" EntitySet="Views" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -75,25 +401,187 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Property365Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Property365Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Property365Model.Comment" />
+          <EntitySet Name="Favorites" EntityType="Property365Model.Favorite" />
+          <EntitySet Name="MyProperties" EntityType="Property365Model.MyProperty" />
+          <EntitySet Name="Permissions" EntityType="Property365Model.Permission" />
+          <EntitySet Name="PermissionTypes" EntityType="Property365Model.PermissionType" />
           <EntitySet Name="Pictures" EntityType="Property365Model.Picture" />
-          <EntitySet Name="PropertyUsers" EntityType="Property365Model.PropertyUser" />
-          <AssociationSet Name="FK_PropertyUser_Picture" Association="Property365Model.FK_PropertyUser_Picture">
-            <End EntitySet="Pictures" Role="Picture" />
-            <End EntitySet="PropertyUsers" Role="PropertyUser" />
-          </AssociationSet>
+          <EntitySet Name="PropertyCategories" EntityType="Property365Model.PropertyCategory" />
+          <EntitySet Name="PropertyPictures" EntityType="Property365Model.PropertyPicture" />
           <EntitySet Name="PropertyRoles" EntityType="Property365Model.PropertyRole" />
+          <EntitySet Name="PropertyUsers" EntityType="Property365Model.PropertyUser" />
+          <EntitySet Name="Ratings" EntityType="Property365Model.Rating" />
+          <EntitySet Name="Views" EntityType="Property365Model.View" />
+          <AssociationSet Name="FK_Comments_MyProperty" Association="Property365Model.FK_Comments_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperties" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_PropertyUser" Association="Property365Model.FK_Comments_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorites_MyProperty" Association="Property365Model.FK_Favorites_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperties" />
+            <End Role="Favorite" EntitySet="Favorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favorites_PropertyUser" Association="Property365Model.FK_Favorites_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+            <End Role="Favorite" EntitySet="Favorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyCategory" Association="Property365Model.FK_Property_PropertyCategory">
+            <End Role="PropertyCategory" EntitySet="PropertyCategories" />
+            <End Role="MyProperty" EntitySet="MyProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyUser" Association="Property365Model.FK_Property_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+            <End Role="MyProperty" EntitySet="MyProperties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Property" Association="Property365Model.FK_PropertyPictures_Property">
+            <End Role="MyProperty" EntitySet="MyProperties" />
+            <End Role="PropertyPicture" EntitySet="PropertyPictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rating_MyProperty" Association="Property365Model.FK_Rating_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperties" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Views_MyProperty" Association="Property365Model.FK_Views_MyProperty">
+            <End Role="MyProperty" EntitySet="MyProperties" />
+            <End Role="View" EntitySet="Views" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_PermissionType" Association="Property365Model.FK_Permission_PermissionType">
+            <End Role="PermissionType" EntitySet="PermissionTypes" />
+            <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_Role" Association="Property365Model.FK_Permission_Role">
+            <End Role="PropertyRole" EntitySet="PropertyRoles" />
+            <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyCategory_Picture" Association="Property365Model.FK_PropertyCategory_Picture">
+            <End Role="Picture" EntitySet="Pictures" />
+            <End Role="PropertyCategory" EntitySet="PropertyCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyPictures_Picture" Association="Property365Model.FK_PropertyPictures_Picture">
+            <End Role="Picture" EntitySet="Pictures" />
+            <End Role="PropertyPicture" EntitySet="PropertyPictures" />
+          </AssociationSet>
           <AssociationSet Name="FK_PropertyUser_PropertyRole" Association="Property365Model.FK_PropertyUser_PropertyRole">
             <End Role="PropertyRole" EntitySet="PropertyRoles" />
             <End Role="PropertyUser" EntitySet="PropertyUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Rating_PropertyUser" Association="Property365Model.FK_Rating_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Views_PropertyUser" Association="Property365Model.FK_Views_PropertyUser">
+            <End Role="PropertyUser" EntitySet="PropertyUsers" />
+            <End Role="View" EntitySet="Views" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="PropertyID" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MyProperty" Relationship="Property365Model.FK_Comments_MyProperty" FromRole="Comment" ToRole="MyProperty" />
+          <NavigationProperty Name="PropertyUser" Relationship="Property365Model.FK_Comments_PropertyUser" FromRole="Comment" ToRole="PropertyUser" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="PropertyID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="MyProperty" Relationship="Property365Model.FK_Favorites_MyProperty" FromRole="Favorite" ToRole="MyProperty" />
+          <NavigationProperty Name="PropertyUser" Relationship="Property365Model.FK_Favorites_PropertyUser" FromRole="Favorite" ToRole="PropertyUser" />
+        </EntityType>
+        <EntityType Name="MyProperty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Long" Type="Decimal" Nullable="false" Precision="18" Scale="15" />
+          <Property Name="Lat" Type="Decimal" Nullable="false" Precision="18" Scale="15" />
+          <Property Name="Area" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Bedroom" Type="Int32" Nullable="false" />
+          <Property Name="Bathroom" Type="Int32" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyUserID" Type="Int64" Nullable="false" />
+          <Property Name="IsSale" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Property365Model.FK_Comments_MyProperty" FromRole="MyProperty" ToRole="Comment" />
+          <NavigationProperty Name="Favorites" Relationship="Property365Model.FK_Favorites_MyProperty" FromRole="MyProperty" ToRole="Favorite" />
+          <NavigationProperty Name="PropertyCategory" Relationship="Property365Model.FK_Property_PropertyCategory" FromRole="MyProperty" ToRole="PropertyCategory" />
+          <NavigationProperty Name="PropertyUser" Relationship="Property365Model.FK_Property_PropertyUser" FromRole="MyProperty" ToRole="PropertyUser" />
+          <NavigationProperty Name="PropertyPictures" Relationship="Property365Model.FK_PropertyPictures_Property" FromRole="MyProperty" ToRole="PropertyPicture" />
+          <NavigationProperty Name="Ratings" Relationship="Property365Model.FK_Rating_MyProperty" FromRole="MyProperty" ToRole="Rating" />
+          <NavigationProperty Name="Views" Relationship="Property365Model.FK_Views_MyProperty" FromRole="MyProperty" ToRole="View" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyRoleID" Type="Int32" Nullable="false" />
+          <Property Name="PermissionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PermissionType" Relationship="Property365Model.FK_Permission_PermissionType" FromRole="Permission" ToRole="PermissionType" />
+          <NavigationProperty Name="PropertyRole" Relationship="Property365Model.FK_Permission_Role" FromRole="Permission" ToRole="PropertyRole" />
+        </EntityType>
+        <EntityType Name="PermissionType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Permissions" Relationship="Property365Model.FK_Permission_PermissionType" FromRole="PermissionType" ToRole="Permission" />
+        </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
-          <Property Name="Image" Nullable="false" MaxLength="Max" FixedLength="false" Type="Binary" />
-          <NavigationProperty Name="PropertyUsers" Relationship="Property365Model.FK_PropertyUser_Picture" FromRole="Picture" ToRole="PropertyUser" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PropertyCategories" Relationship="Property365Model.FK_PropertyCategory_Picture" FromRole="Picture" ToRole="PropertyCategory" />
+          <NavigationProperty Name="PropertyPictures" Relationship="Property365Model.FK_PropertyPictures_Picture" FromRole="Picture" ToRole="PropertyPicture" />
+        </EntityType>
+        <EntityType Name="PropertyCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PictureID" Type="Int64" />
+          <NavigationProperty Name="MyProperties" Relationship="Property365Model.FK_Property_PropertyCategory" FromRole="PropertyCategory" ToRole="MyProperty" />
+          <NavigationProperty Name="Picture" Relationship="Property365Model.FK_PropertyCategory_Picture" FromRole="PropertyCategory" ToRole="Picture" />
+        </EntityType>
+        <EntityType Name="PropertyPicture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyID" Type="Int64" Nullable="false" />
+          <Property Name="PictureID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="MyProperty" Relationship="Property365Model.FK_PropertyPictures_Property" FromRole="PropertyPicture" ToRole="MyProperty" />
+          <NavigationProperty Name="Picture" Relationship="Property365Model.FK_PropertyPictures_Picture" FromRole="PropertyPicture" ToRole="Picture" />
+        </EntityType>
+        <EntityType Name="PropertyRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Permissions" Relationship="Property365Model.FK_Permission_Role" FromRole="PropertyRole" ToRole="Permission" />
+          <NavigationProperty Name="PropertyUsers" Relationship="Property365Model.FK_PropertyUser_PropertyRole" FromRole="PropertyRole" ToRole="PropertyUser" />
         </EntityType>
         <EntityType Name="PropertyUser">
           <Key>
@@ -105,23 +593,192 @@
           <Property Name="Tel" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PictureID" Type="Int64" />
           <Property Name="PropertyRoleID" Type="Int32" Nullable="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Picture" Relationship="Property365Model.FK_PropertyUser_Picture" FromRole="PropertyUser" ToRole="Picture" />
+          <NavigationProperty Name="Comments" Relationship="Property365Model.FK_Comments_PropertyUser" FromRole="PropertyUser" ToRole="Comment" />
+          <NavigationProperty Name="Favorites" Relationship="Property365Model.FK_Favorites_PropertyUser" FromRole="PropertyUser" ToRole="Favorite" />
+          <NavigationProperty Name="MyProperties" Relationship="Property365Model.FK_Property_PropertyUser" FromRole="PropertyUser" ToRole="MyProperty" />
           <NavigationProperty Name="PropertyRole" Relationship="Property365Model.FK_PropertyUser_PropertyRole" FromRole="PropertyUser" ToRole="PropertyRole" />
+          <NavigationProperty Name="Ratings" Relationship="Property365Model.FK_Rating_PropertyUser" FromRole="PropertyUser" ToRole="Rating" />
+          <NavigationProperty Name="Views" Relationship="Property365Model.FK_Views_PropertyUser" FromRole="PropertyUser" ToRole="View" />
         </EntityType>
-        <Association Name="FK_PropertyUser_Picture">
-          <End Type="Property365Model.Picture" Multiplicity="0..1" Role="Picture" />
-          <End Type="Property365Model.PropertyUser" Multiplicity="*" Role="PropertyUser" />
-        </Association>
-        <EntityType Name="PropertyRole">
+        <EntityType Name="Rating">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PropertyUsers" Relationship="Property365Model.FK_PropertyUser_PropertyRole" FromRole="PropertyRole" ToRole="PropertyUser" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="PropertyID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="MyProperty" Relationship="Property365Model.FK_Rating_MyProperty" FromRole="Rating" ToRole="MyProperty" />
+          <NavigationProperty Name="PropertyUser" Relationship="Property365Model.FK_Rating_PropertyUser" FromRole="Rating" ToRole="PropertyUser" />
         </EntityType>
+        <EntityType Name="View">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="UserID" Type="Int64" Nullable="false" />
+          <Property Name="PropertyID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="MyProperty" Relationship="Property365Model.FK_Views_MyProperty" FromRole="View" ToRole="MyProperty" />
+          <NavigationProperty Name="PropertyUser" Relationship="Property365Model.FK_Views_PropertyUser" FromRole="View" ToRole="PropertyUser" />
+        </EntityType>
+        <Association Name="FK_Comments_MyProperty">
+          <End Type="Property365Model.MyProperty" Role="MyProperty" Multiplicity="1" />
+          <End Type="Property365Model.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_PropertyUser">
+          <End Type="Property365Model.PropertyUser" Role="PropertyUser" Multiplicity="0..1" />
+          <End Type="Property365Model.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorites_MyProperty">
+          <End Type="Property365Model.MyProperty" Role="MyProperty" Multiplicity="1" />
+          <End Type="Property365Model.Favorite" Role="Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favorites_PropertyUser">
+          <End Type="Property365Model.PropertyUser" Role="PropertyUser" Multiplicity="1" />
+          <End Type="Property365Model.Favorite" Role="Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyCategory">
+          <End Type="Property365Model.PropertyCategory" Role="PropertyCategory" Multiplicity="1" />
+          <End Type="Property365Model.MyProperty" Role="MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyUser">
+          <End Type="Property365Model.PropertyUser" Role="PropertyUser" Multiplicity="1" />
+          <End Type="Property365Model.MyProperty" Role="MyProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyProperty">
+              <PropertyRef Name="PropertyUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Property">
+          <End Type="Property365Model.MyProperty" Role="MyProperty" Multiplicity="1" />
+          <End Type="Property365Model.PropertyPicture" Role="PropertyPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPicture">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rating_MyProperty">
+          <End Type="Property365Model.MyProperty" Role="MyProperty" Multiplicity="1" />
+          <End Type="Property365Model.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Views_MyProperty">
+          <End Type="Property365Model.MyProperty" Role="MyProperty" Multiplicity="1" />
+          <End Type="Property365Model.View" Role="View" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyProperty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="View">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_PermissionType">
+          <End Type="Property365Model.PermissionType" Role="PermissionType" Multiplicity="1" />
+          <End Type="Property365Model.Permission" Role="Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="PermissionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_Role">
+          <End Type="Property365Model.PropertyRole" Role="PropertyRole" Multiplicity="1" />
+          <End Type="Property365Model.Permission" Role="Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyRole">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="PropertyRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyCategory_Picture">
+          <End Type="Property365Model.Picture" Role="Picture" Multiplicity="0..1" />
+          <End Type="Property365Model.PropertyCategory" Role="PropertyCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyCategory">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyPictures_Picture">
+          <End Type="Property365Model.Picture" Role="Picture" Multiplicity="1" />
+          <End Type="Property365Model.PropertyPicture" Role="PropertyPicture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PropertyPicture">
+              <PropertyRef Name="PictureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PropertyUser_PropertyRole">
           <End Type="Property365Model.PropertyRole" Role="PropertyRole" Multiplicity="1" />
           <End Type="Property365Model.PropertyUser" Role="PropertyUser" Multiplicity="*" />
@@ -134,16 +791,124 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Rating_PropertyUser">
+          <End Type="Property365Model.PropertyUser" Role="PropertyUser" Multiplicity="1" />
+          <End Type="Property365Model.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Views_PropertyUser">
+          <End Type="Property365Model.PropertyUser" Role="PropertyUser" Multiplicity="1" />
+          <End Type="Property365Model.View" Role="View" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyUser">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="View">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Property365ModelStoreContainer" CdmEntityContainer="Property365Entities">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="Property365Model.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favorites">
+            <EntityTypeMapping TypeName="Property365Model.Favorite">
+              <MappingFragment StoreEntitySet="Favorites">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyProperties">
+            <EntityTypeMapping TypeName="Property365Model.MyProperty">
+              <MappingFragment StoreEntitySet="MyProperty">
+                <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+                <ScalarProperty Name="PropertyUserID" ColumnName="PropertyUserID" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="Bathroom" ColumnName="Bathroom" />
+                <ScalarProperty Name="Bedroom" ColumnName="Bedroom" />
+                <ScalarProperty Name="PropertyCategoryID" ColumnName="PropertyCategoryID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="Property365Model.Permission">
+              <MappingFragment StoreEntitySet="Permission">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PermissionTypeID" ColumnName="PermissionTypeID" />
+                <ScalarProperty Name="PropertyRoleID" ColumnName="PropertyRoleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionTypes">
+            <EntityTypeMapping TypeName="Property365Model.PermissionType">
+              <MappingFragment StoreEntitySet="PermissionType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Pictures">
             <EntityTypeMapping TypeName="Property365Model.Picture">
               <MappingFragment StoreEntitySet="Picture">
-                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyCategories">
+            <EntityTypeMapping TypeName="Property365Model.PropertyCategory">
+              <MappingFragment StoreEntitySet="PropertyCategory">
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyPictures">
+            <EntityTypeMapping TypeName="Property365Model.PropertyPicture">
+              <MappingFragment StoreEntitySet="PropertyPictures">
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyRoles">
+            <EntityTypeMapping TypeName="Property365Model.PropertyRole">
+              <MappingFragment StoreEntitySet="PropertyRole">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -153,6 +918,7 @@
               <MappingFragment StoreEntitySet="PropertyUser">
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="PropertyRoleID" ColumnName="PropertyRoleID" />
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Tel" ColumnName="Tel" />
@@ -162,19 +928,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_PropertyUser_Picture" TypeName="Property365Model.FK_PropertyUser_Picture" StoreEntitySet="PropertyUser">
-            <EndProperty Name="PropertyUser">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-            <EndProperty Name="Picture">
-              <ScalarProperty Name="ID" ColumnName="PictureID" />
-            </EndProperty>
-            <Condition ColumnName="PictureID" IsNull="false" />
-          </AssociationSetMapping>
-          <EntitySetMapping Name="PropertyRoles">
-            <EntityTypeMapping TypeName="Property365Model.PropertyRole">
-              <MappingFragment StoreEntitySet="PropertyRole">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="Property365Model.Rating">
+              <MappingFragment StoreEntitySet="Rating">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Views">
+            <EntityTypeMapping TypeName="Property365Model.View">
+              <MappingFragment StoreEntitySet="Views">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

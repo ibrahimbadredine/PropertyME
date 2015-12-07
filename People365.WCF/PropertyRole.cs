@@ -11,19 +11,19 @@ namespace People365.WCF
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
     
     public partial class PropertyRole
     {
         public PropertyRole()
         {
+            this.Permissions = new HashSet<Permission>();
             this.PropertyUsers = new HashSet<PropertyUser>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
-
-        [IgnoreDataMember]
+    
+        public virtual ICollection<Permission> Permissions { get; set; }
         public virtual ICollection<PropertyUser> PropertyUsers { get; set; }
     }
 }

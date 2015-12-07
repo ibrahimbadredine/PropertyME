@@ -14,16 +14,30 @@ namespace People365.WCF
     
     public partial class PropertyUser
     {
+        public PropertyUser()
+        {
+            this.Comments = new HashSet<Comment>();
+            this.Favorites = new HashSet<Favorite>();
+            this.MyProperties = new HashSet<MyProperty>();
+            this.Ratings = new HashSet<Rating>();
+            this.Views = new HashSet<View>();
+        }
+    
         public long ID { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string Tel { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
+        public Nullable<long> PictureID { get; set; }
         public int PropertyRoleID { get; set; }
         public bool isActive { get; set; }
     
-        public virtual Picture Picture { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
+        public virtual ICollection<MyProperty> MyProperties { get; set; }
         public virtual PropertyRole PropertyRole { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<View> Views { get; set; }
     }
 }

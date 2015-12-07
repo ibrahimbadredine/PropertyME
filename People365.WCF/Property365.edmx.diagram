@@ -5,12 +5,34 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6fef3f8dc9a241ba913d1c0f17ba3e8e" Name="Diagram1">
-        <EntityTypeShape EntityType="Property365Model.Picture" PointX="0.75" PointY="0.875" Width="1.5" />
-        <EntityTypeShape EntityType="Property365Model.PropertyUser" Width="1.5" PointX="3" PointY="1" />
-        <AssociationConnector Association="Property365Model.FK_PropertyUser_Picture" ManuallyRouted="false" >
-        </AssociationConnector>
-        <EntityTypeShape EntityType="Property365Model.PropertyRole" Width="1.5" PointX="6.25" PointY="0.875" />
+        <EntityTypeShape EntityType="Property365Model.Comment" Width="1.5" PointX="7.5" PointY="8.375" />
+        <EntityTypeShape EntityType="Property365Model.Favorite" Width="1.5" PointX="7.5" PointY="11.5" />
+        <EntityTypeShape EntityType="Property365Model.MyProperty" Width="1.5" PointX="5.25" PointY="6.875" />
+        <EntityTypeShape EntityType="Property365Model.Permission" Width="1.5" PointX="6" PointY="2.5" />
+        <EntityTypeShape EntityType="Property365Model.PermissionType" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Property365Model.Picture" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="Property365Model.PropertyCategory" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="Property365Model.PropertyPicture" Width="1.5" PointX="10.5" PointY="8.5" />
+        <EntityTypeShape EntityType="Property365Model.PropertyRole" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="Property365Model.PropertyUser" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="Property365Model.Rating" Width="1.5" PointX="10.5" PointY="5.5" />
+        <EntityTypeShape EntityType="Property365Model.View" Width="1.5" PointX="7.5" PointY="5.5" />
+        <AssociationConnector Association="Property365Model.FK_Comments_MyProperty" />
+        <AssociationConnector Association="Property365Model.FK_Comments_PropertyUser" />
+        <AssociationConnector Association="Property365Model.FK_Favorites_MyProperty" />
+        <AssociationConnector Association="Property365Model.FK_Favorites_PropertyUser" />
+        <AssociationConnector Association="Property365Model.FK_Property_PropertyCategory" />
+        <AssociationConnector Association="Property365Model.FK_Property_PropertyUser" />
+        <AssociationConnector Association="Property365Model.FK_PropertyPictures_Property" />
+        <AssociationConnector Association="Property365Model.FK_Rating_MyProperty" />
+        <AssociationConnector Association="Property365Model.FK_Views_MyProperty" />
+        <AssociationConnector Association="Property365Model.FK_Permission_PermissionType" />
+        <AssociationConnector Association="Property365Model.FK_Permission_Role" />
+        <AssociationConnector Association="Property365Model.FK_PropertyCategory_Picture" />
+        <AssociationConnector Association="Property365Model.FK_PropertyPictures_Picture" />
         <AssociationConnector Association="Property365Model.FK_PropertyUser_PropertyRole" />
+        <AssociationConnector Association="Property365Model.FK_Rating_PropertyUser" />
+        <AssociationConnector Association="Property365Model.FK_Views_PropertyUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,7 +18,6 @@ namespace People365.WCF
         public Property365Entities()
             : base("name=Property365Entities")
         {
-            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,8 +25,17 @@ namespace People365.WCF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Favorite> Favorites { get; set; }
+        public virtual DbSet<MyProperty> MyProperties { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<PermissionType> PermissionTypes { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }
-        public virtual DbSet<PropertyUser> PropertyUsers { get; set; }
+        public virtual DbSet<PropertyCategory> PropertyCategories { get; set; }
+        public virtual DbSet<PropertyPicture> PropertyPictures { get; set; }
         public virtual DbSet<PropertyRole> PropertyRoles { get; set; }
+        public virtual DbSet<PropertyUser> PropertyUsers { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
+        public virtual DbSet<View> Views { get; set; }
     }
 }
